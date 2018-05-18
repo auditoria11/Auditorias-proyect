@@ -1,0 +1,120 @@
+
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Mes: {{libro_mes.mes}} - {{libro_mes.year}}</h3>
+</div>
+<div class="modal-body" id="modal-body">
+
+    <table>
+        <tr>
+            <td>No</td>
+            <td>Diezmo</td>
+            <td>Ofrenda</td>
+            <td>Ofrenda especial</td>
+            <td>Total</td>
+        </tr>
+
+        <tr>
+            <td class="no-padding bold">Sem 1</td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem1_diezmo" class="valor-sm">
+            </td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem1_ofrenda" class="valor-sm">
+            </td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem1_especial" class="valor-sm">
+            </td>
+            <td class="no-padding fondo-sum-sem">
+                {{ libro.sem1_diezmo + libro.sem1_ofrenda + libro.sem1_especial }}
+            </td>
+        </tr>
+
+        <tr>
+            <td class="no-padding bold">Sem 2</td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem2_diezmo" class="valor-sm">
+            </td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem2_ofrenda" class="valor-sm">
+            </td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem2_especial" class="valor-sm">
+            </td>
+            <td class="no-padding fondo-sum-sem">
+                {{ libro.sem2_diezmo + libro.sem2_ofrenda + libro.sem2_especial }}
+            </td>
+        </tr>
+
+        <tr>
+            <td class="no-padding bold">Sem 3</td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem3_diezmo" class="valor-sm">
+            </td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem3_ofrenda" class="valor-sm">
+            </td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem3_especial" class="valor-sm">
+            </td>
+            <td class="no-padding fondo-sum-sem">
+                {{ libro.sem3_diezmo + libro.sem3_ofrenda + libro.sem3_especial }}
+            </td>
+        </tr>
+
+        <tr>
+            <td class="no-padding bold">Sem 4</td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem4_diezmo" class="valor-sm">
+            </td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem4_ofrenda" class="valor-sm">
+            </td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem4_especial" class="valor-sm">
+            </td>
+            <td class="no-padding fondo-sum-sem">
+                {{ libro.sem4_diezmo + libro.sem4_ofrenda + libro.sem4_especial }}
+            </td>
+        </tr>
+
+        <tr>
+            <td class="no-padding bold">Sem 5</td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem5_diezmo" class="valor-sm">
+            </td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem5_ofrenda" class="valor-sm">
+            </td>
+            <td class="no-padding">
+                <input type="number" ng-model="libro.sem5_especial" class="valor-sm">
+            </td>
+            <td class="no-padding fondo-sum-sem">
+                {{ libro.sem5_diezmo + libro.sem5_ofrenda + libro.sem5_especial }}
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="no-padding bold">Mes</td>
+            <td class="no-padding bold">
+                {{ libro.sem1_diezmo + libro.sem2_diezmo + libro.sem3_diezmo + libro.sem4_diezmo + libro.sem5_diezmo }}
+            </td>
+            <td class="no-padding bold">
+                {{ libro.sem1_ofrenda + libro.sem2_ofrenda + libro.sem3_ofrenda + libro.sem4_ofrenda + libro.sem5_ofrenda }}
+            </td>
+            <td class="no-padding bold">
+                {{ libro.sem1_especial + libro.sem2_especial + libro.sem3_especial + libro.sem4_especial + libro.sem5_especial }}
+            </td>
+            <td class="no-padding bold fondo-sum-sem">
+                {{ libro.sem1_diezmo + libro.sem2_diezmo + libro.sem3_diezmo + libro.sem4_diezmo + libro.sem5_diezmo + libro.sem1_ofrenda + libro.sem2_ofrenda + libro.sem3_ofrenda + libro.sem4_ofrenda + libro.sem5_ofrenda + libro.sem1_especial + libro.sem2_especial + libro.sem3_especial + libro.sem4_especial + libro.sem5_especial }}
+            </td>
+        </tr>
+
+    </table>
+
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">Guardar</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
+</div>

@@ -14,81 +14,94 @@
 	
                      
                       	
-						<div >
-							
-									<form ng-submit="crear_libronuevo(librocreater)">
-									
-									<select multiple="multiple" ng-model="librocreater.year">
-										<option ng-repeat="year in years" value="{{year.year}}">{{year.year}}</option> 
-									</select>
+<div >
+	
+	<form ng-submit="crear_libronuevo(librocreater)">
+		
+		<select multiple="multiple" ng-model="librocreater.year">
+			<option ng-repeat="year in years" value="{{year.year}}">{{year.year}}</option> 
+		</select>
 
-									<select multiple="multiple" ng-model="librocreater.mes">
-										<option ng-repeat="mes in meses" value="{{mes.mes}}">{{mes.mes}}</option> 
-									</select>
+		<select multiple="multiple" ng-model="librocreater.mes">
+			<option ng-repeat="mes in meses" value="{{mes.mes}}">{{mes.mes}}</option> 
+		</select>
 
-									<div style="display: inline-block;">
-										<button class="btn btn-primary " style="margin-top: -50px;" type="submit" uib-tooltip="Agregar mes">
-											<i class="glyphicon glyphicon-plus"></i>
-										</button>
-									</div>
-								  </form>
+		<div style="display: inline-block;">
+			<button class="btn btn-primary " style="margin-top: -50px;" type="submit" uib-tooltip="Agregar mes">
+				<i class="glyphicon glyphicon-plus"></i>
+			</button>
+		</div>
+	</form>
 
-						</div>
+</div>
 
 
 						
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">ID </th>
-								<th scope="col">Año</th>
-								<th scope="col">Mes</th>
-								<th scope="col">Diezmo</th>
-								<th scope="col">Ofrenda</th>
-								<th scope="col">Ofr Espec</th>
-								<th scope="col">Total</th>
-								<th scope="col">Remesa</th>
-								<th scope="col">Remesa Enviada</th>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">ID </th>
+			<th scope="col">Año</th>
+			<th scope="col">Mes</th>
+			<th scope="col">Diezmo</th>
+			<th scope="col">Ofrenda</th>
+			<th scope="col">Ofr Espec</th>
+			<th scope="col">Total</th>
+			<th scope="col">Remesa</th>
+			<th scope="col">Remesa Enviada</th>
 
 
-							
-							</tr>
-						</thead>
-						<tbody>
+		
+		</tr>
+	</thead>
+	<tbody>
 
-							<tr ng-repeat="lib_mes in lib_meses">
+		<tr ng-repeat="lib_mes in lib_meses">
 
-								<td>{{$index + 1}}</td>
-								<td>{{lib_mes.year}}</td>
-								<td>{{lib_mes.mes}}</td>
-								<td>
-									<input type="number" ng-model="lib_mes.diezmos" style="width: 70px; font-size: 9pt;">
-								</td>
-								<td>
-									<input type="number" ng-model="lib_mes.ofrendas" style="width: 70px; font-size: 9pt;">
-								</td>
-								<td>
-									<input type="number" ng-model="lib_mes.especiales" style="width: 70px; font-size: 9pt;">
-								</td>
-								<td>{{ lib_mes.diezmos + lib_mes.ofrendas + lib_mes.especiales }}</td>
-								<td>{{ lib_mes.ofrenda + lib_mes.especiales }}</td>
-								<td>{{lib_mes.remesa_enviada}}</td>
-								
-								<td scope="col" class=" glyphicon glyphicon-pencil btn btn-primary" href="" ng-click="modificar_distrito(distrito)"></td>
-								<td scope="col" class="glyphicon glyphicon-remove btn btn-danger" href="" ng-click="EliminarLibroMensul(lib_mes)"></td>
-							</tr>
+			<td>{{$index + 1}}</td>
+			<td>{{lib_mes.year}}</td>
+			<td style="padding: 0px">
+				<input type="button" ng-click="abrirLibroSemanal(lib_mes)" class="btn btn-info btn-sm" value="{{lib_mes.mes}}">
+			</td>
+			<td class="no-padding">
+				<input type="number" ng-model="lib_mes.diezmos" class="valor-sm"
+				ng-change="cambiaValor(lib_mes, 'diezmos')" 
+				ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
+			</td>
+			<td class="no-padding">
+				<input type="number" ng-model="lib_mes.ofrendas" class="valor-sm"
+				ng-change="cambiaValor(lib_mes, 'ofrendas')" 
+				ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
+			</td>
+			<td class="no-padding">
+				<input type="number" ng-model="lib_mes.especiales" class="valor-sm"
+				ng-change="cambiaValor(lib_mes, 'especiales')" 
+				ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
+			</td>
+			<td>{{ lib_mes.diezmos + lib_mes.ofrendas + lib_mes.especiales }}</td>
+			<td>{{ lib_mes.ofrenda + lib_mes.especiales }}</td>
+			<td>{{lib_mes.remesa_enviada}}</td>
+			
 
+			<td class="no-padding">
 
+				<button ng-show="false" href="" class="btn btn-primary btn-sm" ng-click="modificar_lib(lib_mes)">
+					<i class="glyphicon glyphicon-pencil"></i>
+				</button>
 
-
-						</tbody>
-					</table>
-				</div>
+				<button href="" class="btn btn-danger btn-sm" ng-click="EliminarLibroMensul(lib_mes)">
+					<i class="glyphicon glyphicon-remove"></i>
+				</button>
 				
-			</div>
-		</div>
-	</div>
-</div>
+			</td>
+		</tr>
+
+
+
+
+	</tbody>
+</table>
+				
 
 
 

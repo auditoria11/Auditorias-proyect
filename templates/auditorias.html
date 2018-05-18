@@ -28,7 +28,7 @@
 
                 <button  class="btn btn-primary" ng-show="!vermostrandocrarauditorias" ng-click="vercrearauditorias()">Crear</button>
                     
-                    <div ng-show="vermostrandocrarauditorias" class="panel panel-warning">
+                    <div ng-show="vermostrandocrarauditorias" class="panel panel-warning" style="margin-bottom: 50px">
 
                             <div class="box-header well">
                         <h2>
@@ -55,7 +55,7 @@
                           </div>
 
                           
-                          <div>  
+                          <div>  <label>Iglesia</label>
                             
                                           <ui-select ng-model="auditoria_crear.iglesia" style="width: 100%;" theme="bootstrap">
                                             <ui-select-match placeholder="Iglesia">

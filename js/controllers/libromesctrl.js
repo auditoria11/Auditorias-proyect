@@ -1,6 +1,6 @@
 angular.module("auditoriaApp")
 
-.controller("LibroMesCtrl", function($scope, ConexionServ, $filter) {
+.controller("LibroMesCtrl", function($scope, ConexionServ, $filter, $uibModal, toastr) {
 
 	$scope.entidades 		= true;
     $scope.distrito_new 	= {};
@@ -38,38 +38,7 @@ angular.module("auditoriaApp")
 			{year: 2027},
 			{year: 2028},
 			{year: 2029},
-			{year: 2030},
-			{year: 2031},
-			{year: 2032},
-			{year: 2033},
-			{year: 2034},
-			{year: 2035},
-			{year: 2036},
-			{year: 2037},
-			{year: 2038},
-			{year: 2039},
-			{year: 2040},
-			{year: 2041},
-			{year: 2042},
-			{year: 2043},
-			{year: 2044},
-			{year: 2045},
-			{year: 2046},
-			{year: 2047},
-			{year: 2048},
-			{year: 2049},
-			{year: 2050},
-			{year: 2051},
-			{year: 2052},
-			{year: 2053},
-			{year: 2054},
-			{year: 2055},
-			{year: 2056},
-			{year: 2057},
-			{year: 2058},
-			{year: 2059},
-			{year: 2060}
-
+			{year: 2030}
 		];
 		
 		$scope.gridOptions = {
@@ -87,6 +56,78 @@ angular.module("auditoriaApp")
 		};
 		
 	
+
+
+
+	$scope.abrirLibroSemanal = function(libro_mes) {
+
+
+	    var modalInstance = $uibModal.open({
+	        templateUrl: 'templates/libros/libroSemanalModal.html',
+	        resolve: {
+		        libro_mes: function () {
+		        	return libro_mes;
+		        }
+		    },
+	        controller: function ($uibModalInstance, $scope, libro_mes, ConexionServ) {
+	        	$scope.libro_mes = libro_mes;
+	        	$scope.libro = {
+	        		sem1_diezmo: 0,
+	        		sem1_ofrenda: 0,
+	        		sem1_especial: 0,
+
+	        		sem2_diezmo: 0,
+	        		sem2_ofrenda: 0,
+	        		sem2_especial: 0,
+
+	        		sem3_diezmo: 0,
+	        		sem3_ofrenda: 0,
+	        		sem3_especial: 0,
+
+	        		sem4_diezmo: 0,
+	        		sem4_ofrenda: 0,
+	        		sem4_especial: 0,
+
+	        		sem5_diezmo: 0,
+	        		sem5_ofrenda: 0,
+	        		sem5_especial: 0
+	        	};
+
+
+				$scope.ok = function () {
+
+				    $uibModalInstance.close('Cerrado');
+				};
+
+				$scope.cancel = function () {
+				    $uibModalInstance.dismiss('cancel');
+				};
+
+	        	return ;
+	        }
+	    });
+
+	    modalInstance.result.then(function (result) {
+	        console.log(result);
+	    });
+
+
+	}
+
+
+
+	$scope.cambiaValor = function(libro, columna) {
+
+		consulta 	= 'UPDATE lib_mensuales SET ' + columna + '=? WHERE rowid=?';
+		colum 		= columna.charAt(0).toUpperCase() + columna.slice(1);
+		
+		ConexionServ.query(consulta, [libro[columna], libro.rowid]).then(function(){
+			toastr.success(colum + ' guardado');
+		}, function(){
+			toastr.error(colum + ' NO guardado');
+		});
+
+	}
 
 
 
