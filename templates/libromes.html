@@ -1,0 +1,91 @@
+<!-- content starts -->
+<div>
+	<ul class="breadcrumb">
+		<li>
+			<a ui-sref="panel">Inicio</a>
+		</li>
+		<li>
+			<a ui-sref="panel.libromes">Libro Mes</a>
+		</li>
+	</ul>
+</div>
+
+
+	
+                     
+                      	
+						<div >
+							
+									<form ng-submit="crear_libronuevo(librocreater)">
+									
+									<select multiple="multiple" ng-model="librocreater.year">
+										<option ng-repeat="year in years" value="{{year.year}}">{{year.year}}</option> 
+									</select>
+
+									<select multiple="multiple" ng-model="librocreater.mes">
+										<option ng-repeat="mes in meses" value="{{mes.mes}}">{{mes.mes}}</option> 
+									</select>
+
+									<div style="display: inline-block;">
+										<button class="btn btn-primary " style="margin-top: -50px;" type="submit" uib-tooltip="Agregar mes">
+											<i class="glyphicon glyphicon-plus"></i>
+										</button>
+									</div>
+								  </form>
+
+						</div>
+
+
+						
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">ID </th>
+								<th scope="col">Año</th>
+								<th scope="col">Mes</th>
+								<th scope="col">Diezmo</th>
+								<th scope="col">Ofrenda</th>
+								<th scope="col">Ofr Espec</th>
+								<th scope="col">Remesa</th>
+								<th scope="col">Remesa Enviada</th>
+								<th scope="col">Total</th>
+
+
+							
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr ng-repeat="lib_mes in lib_meses">
+
+								<td>{{$index + 1}}</td>
+								<td>{{lib_mes.year}}</td>
+								<td>{{lib_mes.mes}}</td>
+								<td>{{lib_mes.diezmo}}</td>
+								<td>{{lib_mes.ofrendas}}</td>
+								<td>{{lib_mes.especiales}}</td>
+								<td>{{ lib_mes.ofrenda + lib_mes.especiales }}</td>
+								<td>{{lib_mes.remesa_enviada}}</td>
+								<td></td>
+								<td scope="col" class=" glyphicon glyphicon-pencil btn btn-primary" href="" ng-click="modificar_distrito(distrito)"></td>
+								<td scope="col" class="glyphicon glyphicon-remove btn btn-danger" href="" ng-click="EliminarLibroMensul(lib_mes)"></td>
+							</tr>
+
+
+
+
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+	
+
