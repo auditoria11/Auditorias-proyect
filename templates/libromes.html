@@ -46,9 +46,9 @@
 								<th scope="col">Diezmo</th>
 								<th scope="col">Ofrenda</th>
 								<th scope="col">Ofr Espec</th>
+								<th scope="col">Total</th>
 								<th scope="col">Remesa</th>
 								<th scope="col">Remesa Enviada</th>
-								<th scope="col">Total</th>
 
 
 							
@@ -61,12 +61,19 @@
 								<td>{{$index + 1}}</td>
 								<td>{{lib_mes.year}}</td>
 								<td>{{lib_mes.mes}}</td>
-								<td>{{lib_mes.diezmo}}</td>
-								<td>{{lib_mes.ofrendas}}</td>
-								<td>{{lib_mes.especiales}}</td>
+								<td>
+									<input type="number" ng-model="lib_mes.diezmos" style="width: 70px; font-size: 9pt;">
+								</td>
+								<td>
+									<input type="number" ng-model="lib_mes.ofrendas" style="width: 70px; font-size: 9pt;">
+								</td>
+								<td>
+									<input type="number" ng-model="lib_mes.especiales" style="width: 70px; font-size: 9pt;">
+								</td>
+								<td>{{ lib_mes.diezmos + lib_mes.ofrendas + lib_mes.especiales }}</td>
 								<td>{{ lib_mes.ofrenda + lib_mes.especiales }}</td>
 								<td>{{lib_mes.remesa_enviada}}</td>
-								<td></td>
+								
 								<td scope="col" class=" glyphicon glyphicon-pencil btn btn-primary" href="" ng-click="modificar_distrito(distrito)"></td>
 								<td scope="col" class="glyphicon glyphicon-remove btn btn-danger" href="" ng-click="EliminarLibroMensul(lib_mes)"></td>
 							</tr>
