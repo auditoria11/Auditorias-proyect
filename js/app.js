@@ -18,12 +18,17 @@ angular.module('auditoriaApp', [
 	'toastr'
 ])
 
-.config(function($stateProvider, $urlRouterProvider, uiSelectConfig){
+.config(function($stateProvider, $urlRouterProvider, uiSelectConfig, toastrConfig){
 	
 	
 	uiSelectConfig.theme = 'select2'
 	uiSelectConfig.resetSearchInput = true
 	
+	angular.extend(toastrConfig, {
+	    maxOpened: 3,    
+	    preventDuplicates: true,
+	});
+
 
 	$stateProvider
 
@@ -75,6 +80,13 @@ angular.module('auditoriaApp', [
 		controller: 'respuestasctrl',
 		templateUrl: 'templates/respuestas.html'
 	})
+
+	.state('panel.informe', {
+		url: '/informe',
+		controller: 'informectrl',
+		templateUrl: 'templates/informes.html'
+	})
+
 
 	.state('panel.libromes', {
 		url: '/libromes',

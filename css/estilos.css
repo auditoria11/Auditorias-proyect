@@ -8,6 +8,13 @@
 .no-padding{
 	padding: 0px !important;
 }
+.no-padding-bottom{
+	padding-bottom: 0px !important;
+}
+
+.padding4{
+	padding: 4px !important;
+}
 
 .bold{
 	font-weight: bold;

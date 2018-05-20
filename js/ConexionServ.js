@@ -52,25 +52,25 @@ angular.module('auditoriaApp')
     // Dinero recogido en los 5 o 4 sábados del mes. Puede especificar por sábado o por total
     sqlLibSem = "CREATE TABLE IF NOT EXISTS lib_semanales (id integer," +
                 "libro_mes_id integer  NOT NULL," +
-                "diezmo_1 integer DEFAULT NULL," + // Diezmos recogidos el primer sábado del mes
-                "ofrenda_1 integer  DEFAULT NULL ," + // Ofrendas recogidas el primer sábado del mes
-                "especial_1 integer  DEFAULT NULL ," +  // Ofrendas especiales recogidas el primer sábado del mes
-                "diezmo_2 integer DEFAULT NULL," + // Diezmos recogidos el SEGUNDO sábado del mes
-                "ofrenda_2 integer  DEFAULT NULL ," +
-                "especial_2 integer  DEFAULT NULL ," + 
-                "diezmo_3 integer DEFAULT NULL," + // Diezmos recogidos el TERCERO sábado del mes
-                "ofrenda_3 integer  DEFAULT NULL ," +
-                "especial_3 integer  DEFAULT NULL ," + 
-                "diezmo_4 integer DEFAULT NULL," + // Diezmos recogidos el CUARTO sábado del mes
-                "ofrenda_4 integer  DEFAULT NULL ," +
-                "especial_4 integer  DEFAULT NULL ," + 
-                "diezmo_5 integer DEFAULT NULL," + // Diezmos recogidos el QUINTO sábado del mes
-                "ofrenda_5 integer  DEFAULT NULL ," +
-                "especial_5 integer  DEFAULT NULL ," + 
-                "total_diezmos integer  DEFAULT NULL ," +  // Diezmos recogidos del mes, no por sábados
-                "total_ofrendas integer  DEFAULT NULL ," +  // Ofrendas recogidas del mes, no por sábados
-                "total_especiales integer  DEFAULT NULL ," +  // Ofrendas especiales recogidas del mes, no por sábados
-                "por_total integer  DEFAULT NULL )"; // 0 o 1. Si es por total, se ignoran los valores de los 5 sábados
+                "diezmo_1 integer DEFAULT 0," + // Diezmos recogidos el primer sábado del mes
+                "ofrenda_1 integer  DEFAULT 0 ," + // Ofrendas recogidas el primer sábado del mes
+                "especial_1 integer  DEFAULT 0 ," +  // Ofrendas especiales recogidas el primer sábado del mes
+                "diezmo_2 integer DEFAULT 0," + // Diezmos recogidos el SEGUNDO sábado del mes
+                "ofrenda_2 integer  DEFAULT 0 ," +
+                "especial_2 integer  DEFAULT 0 ," + 
+                "diezmo_3 integer DEFAULT 0," + // Diezmos recogidos el TERCERO sábado del mes
+                "ofrenda_3 integer  DEFAULT 0 ," +
+                "especial_3 integer  DEFAULT 0 ," + 
+                "diezmo_4 integer DEFAULT 0," + // Diezmos recogidos el CUARTO sábado del mes
+                "ofrenda_4 integer  DEFAULT 0 ," +
+                "especial_4 integer  DEFAULT 0 ," + 
+                "diezmo_5 integer DEFAULT 0," + // Diezmos recogidos el QUINTO sábado del mes
+                "ofrenda_5 integer  DEFAULT 0 ," +
+                "especial_5 integer  DEFAULT 0 ," + 
+                "total_diezmos integer  DEFAULT 0 ," +  // Diezmos recogidos del mes, no por sábados
+                "total_ofrendas integer  DEFAULT 0 ," +  // Ofrendas recogidas del mes, no por sábados
+                "total_especiales integer  DEFAULT 0 ," +  // Ofrendas especiales recogidas del mes, no por sábados
+                "por_total integer  DEFAULT 0 )"; // 0 o 1. Si es por total, se ignoran los valores de los 5 sábados
 
     // Obligaciones fijas que tiene la iglesia mensuales
     sqlDestinos = "CREATE TABLE IF NOT EXISTS destinos (id integer," +
@@ -235,6 +235,11 @@ sqlrespuestas = "CREATE TABLE IF NOT EXISTS respuestas (id integer," +
       
             db.transaction(function (tx) {
               tx.executeSql(sql, datos, function (tx, result) {
+
+                if (sql.substring(0,6).toLowerCase() == 'insert') {
+                    defered.resolve(result);
+                };
+
                 var items = [];
                 for (i = 0, l = result.rows.length; i < l; i++) {
                   items.push(result.rows.item(i));

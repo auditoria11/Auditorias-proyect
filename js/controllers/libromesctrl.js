@@ -7,6 +7,8 @@ angular.module("auditoriaApp")
 		$scope.modentidades 	= false;
 		$scope.verCrearDistrito = false;
 		$scope.usuarios 		= [];
+		$scope.verCrearLibroMensual = false;
+		
 	
 		$scope.meses = [
 			{num: 0, mes: 'Enero'},
@@ -59,6 +61,7 @@ angular.module("auditoriaApp")
 
 
 
+
 	$scope.abrirLibroSemanal = function(libro_mes) {
 
 
@@ -70,45 +73,56 @@ angular.module("auditoriaApp")
 		        }
 		    },
 	        controller: function ($uibModalInstance, $scope, libro_mes, ConexionServ) {
-	        	$scope.libro_mes = libro_mes;
-	        	$scope.libro = {
-	        		sem1_diezmo: 0,
-	        		sem1_ofrenda: 0,
-	        		sem1_especial: 0,
-
-	        		sem2_diezmo: 0,
-	        		sem2_ofrenda: 0,
-	        		sem2_especial: 0,
-
-	        		sem3_diezmo: 0,
-	        		sem3_ofrenda: 0,
-	        		sem3_especial: 0,
-
-	        		sem4_diezmo: 0,
-	        		sem4_ofrenda: 0,
-	        		sem4_especial: 0,
-
-	        		sem5_diezmo: 0,
-	        		sem5_ofrenda: 0,
-	        		sem5_especial: 0
-	        	};
+	        	$scope.libro = libro_mes;
 
 
 				$scope.ok = function () {
-
 				    $uibModalInstance.close('Cerrado');
 				};
 
-				$scope.cancel = function () {
-				    $uibModalInstance.dismiss('cancel');
-				};
+
+				$scope.cambiaValor = function(libro, columna, colum_mes) {
+
+					consulta 	= 'UPDATE lib_semanales SET ' + columna + '=? WHERE rowid=?';
+					colum 		= columna.charAt(0).toUpperCase() + columna.slice(1);
+					
+					ConexionServ.query(consulta, [libro[columna], libro.rowid]).then(function(){
+
+						consulta 	= 'UPDATE lib_mensuales SET ' + colum_mes + '=? WHERE rowid=?';
+						total 		= 0;
+
+						if (colum_mes == 'diezmos') {
+							total 		= libro.diezmo_1 + libro.diezmo_2 + libro.diezmo_3 + libro.diezmo_4 + libro.diezmo_5;
+						}
+						if (colum_mes == 'ofrendas') {
+							total 		= libro.ofrenda_1 + libro.ofrenda_2 + libro.ofrenda_3 + libro.ofrenda_4 + libro.ofrenda_5;
+						}
+						if (colum_mes == 'especiales') {
+							total 		= libro.especial_1 + libro.especial_2 + libro.especial_3 + libro.especial_4 + libro.especial_5;
+						}
+						console.log(total, libro);
+						
+						ConexionServ.query(consulta, [total, libro.rowid]).then(function(){
+							toastr.success(colum + ' guardado');
+						}, function(){
+							toastr.error(colum + ' NO guardado');
+						});
+
+					}, function(){
+						toastr.error(colum + ' NO guardado');
+					});
+
+				}
 
 	        	return ;
 	        }
 	    });
 
 	    modalInstance.result.then(function (result) {
+	    	$scope.traerDatos();
 	        console.log(result);
+	    }, function(r2){
+	    	$scope.traerDatos();
 	    });
 
 
@@ -134,21 +148,36 @@ angular.module("auditoriaApp")
   $scope.crear_libronuevo = function(libro_new) {
 
   		if (libro_new.mes.length > 1) {
-  			alert('Solo puedes seleccionar un mes.');
+  			toastr.warning('Solo puedes seleccionar un mes.');
+  			return;
+  		}
+  		if (libro_new.year == undefined) {
+  			toastr.warning('Seleccione el año.');
   			return;
   		}
   		if (libro_new.year.length > 1) {
-  			alert('Solo puedes seleccionar un año.');
+  			toastr.warning('Solo puedes seleccionar un año.');
   			return;
   		}
+
+  	
 
   		year_temp 	= libro_new.year[0];
   		mes_temp 	= libro_new.mes[0];
 
+  		// Movemos al siguiente mes
+  		if (mes_temp=='Enero') {libro_new.mes[0] = 'Febrero'}else if(mes_temp=='Febrero'){libro_new.mes[0] = 'Marzo'}else if(mes_temp=='Marzo'){libro_new.mes[0] = 'Abril'}else if(mes_temp=='Abril'){libro_new.mes[0] = 'Mayo'}else if(mes_temp=='Mayo'){libro_new.mes[0] = 'Junio'}else if(mes_temp=='Junio'){libro_new.mes[0] = 'Julio'}
+  			else if(mes_temp=='Julio'){libro_new.mes[0] = 'Agosto'}else if(mes_temp=='Agosto'){libro_new.mes[0] = 'Septiembre'}else if(mes_temp=='Septiembre'){libro_new.mes[0] = 'Octubre'}else if(mes_temp=='Octubre'){libro_new.mes[0] = 'Noviembre'}else if(mes_temp=='Noviembre'){libro_new.mes[0] = 'Diciembre'}else if(mes_temp=='Diciembre'){libro_new.mes[0] = 'Enero'};
+
+
 		consulta 	= 'INSERT INTO lib_mensuales(year, mes, auditoria_id, diezmos, ofrendas, especiales, remesa_enviada) VALUES(?,?,?,?,?,?,?)';
 		
 		ConexionServ.query(consulta, [year_temp, mes_temp, $scope.USER.auditoria_id,0,0,0,0]).then(function(result) {
-			$scope.traerDatos();
+
+			consulta 	= 'INSERT INTO lib_semanales(libro_mes_id) VALUES(?)';
+			ConexionServ.query(consulta, [result.insertId]).then(function(result) {
+				$scope.traerDatos();
+			});
 		}, function(tx) {
 			console.log("Error no es posbile crear mes", tx);
 		});
@@ -162,7 +191,10 @@ angular.module("auditoriaApp")
 
 	$scope.traerDatos = function(){
 
-		consulta 	= 'SELECT m.*, m.rowid FROM lib_mensuales m';
+		$scope.lib_meses = [];
+
+		consulta 	= 'SELECT m.*, m.rowid, s.*, s.rowid FROM lib_mensuales m ' + 
+						'INNER JOIN lib_semanales s ON m.rowid=s.libro_mes_id';
 		
 		ConexionServ.query(consulta, []).then(function(result) {
 			$scope.lib_meses = result;
@@ -176,29 +208,29 @@ angular.module("auditoriaApp")
 
 
 	
-   $scope.traerDatos();
+	$scope.traerDatos();
 
-   	 $scope.EliminarLibroMensul = function(lib_mensualesEliminate){
+   	$scope.EliminarLibroMensul = function(lib_mens){
 	  	
-	 	consulta ="DELETE FROM lib_mensuales WHERE rowid=? ";
+	  	var res = confirm("¿Seguro que desea eliminar?");
 
-	   ConexionServ.query(consulta,[lib_mensualesEliminate.rowid]).then(function(result){
+		if (res == true) {
 
+		 	consulta ="DELETE FROM lib_mensuales WHERE rowid=? ";
 
-           console.log('Libro mes eliminido', result);
-           $scope.lib_mensualesEliminates = $filter('filter') ($scope.lib_mensualesEliminates, {rowid: '!' + lib_mensualesEliminate.rowid})
-	   } , function(tx){
+			ConexionServ.query(consulta,[lib_mens.rowid]).then(function(result){
 
-	   	console.log('Libro mes no se pudo Eliminar' , tx)
+				console.log('Libro mes eliminido', result);
+				$scope.lib_meses = $filter('filter') ($scope.lib_meses, {rowid: '!' + lib_mens.rowid})
+				toastr.success('Mes eliminado.');
 
-	   });
-
-	 }
+			} , function(tx){
+				console.log('Libro mes no se pudo Eliminar' , tx)
+			});
+		}
+	}
 	 
-	 $scope.InsertarMesAño = function(){
-   
-	};
 
 	
 	
-  });
+});

@@ -11,12 +11,16 @@
 </div>
 
 
+
+
+
+
 	
                      
                       	
 <div >
 	
-	<form ng-submit="crear_libronuevo(librocreater)">
+	<form ng-submit="!crear_libronuevo(librocreater)">
 		
 		<select multiple="multiple" ng-model="librocreater.year">
 			<option ng-repeat="year in years" value="{{year.year}}">{{year.year}}</option> 
@@ -27,9 +31,10 @@
 		</select>
 
 		<div style="display: inline-block;">
-			<button class="btn btn-primary " style="margin-top: -50px;" type="submit" uib-tooltip="Agregar mes">
+			<button  class="btn btn-primary " style="margin-top: -50px;" type="submit" uib-tooltip="Agregar mes">
 				<i class="glyphicon glyphicon-plus"></i>
 			</button>
+
 		</div>
 	</form>
 
@@ -58,29 +63,33 @@
 
 		<tr ng-repeat="lib_mes in lib_meses">
 
-			<td>{{$index + 1}}</td>
-			<td>{{lib_mes.year}}</td>
+			<td class="no-padding-bottom">{{$index + 1}}</td>
+			<td class="no-padding-bottom">{{lib_mes.year}}</td>
 			<td style="padding: 0px">
 				<input type="button" ng-click="abrirLibroSemanal(lib_mes)" class="btn btn-info btn-sm" value="{{lib_mes.mes}}">
 			</td>
 			<td class="no-padding">
 				<input type="number" ng-model="lib_mes.diezmos" class="valor-sm"
 				ng-change="cambiaValor(lib_mes, 'diezmos')" 
-				ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
+				ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+				popover-append-to-body="true" uib-popover-template="'templates/libros/diezmosSemanalesPopover.html'"
+				popover-title="Diezmos semanales" popover-popup-delay="400"
+				popover-trigger="'mouseenter'">
 			</td>
 			<td class="no-padding">
 				<input type="number" ng-model="lib_mes.ofrendas" class="valor-sm"
 				ng-change="cambiaValor(lib_mes, 'ofrendas')" 
-				ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
+				ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+				>
 			</td>
 			<td class="no-padding">
 				<input type="number" ng-model="lib_mes.especiales" class="valor-sm"
 				ng-change="cambiaValor(lib_mes, 'especiales')" 
 				ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
 			</td>
-			<td>{{ lib_mes.diezmos + lib_mes.ofrendas + lib_mes.especiales }}</td>
-			<td>{{ lib_mes.ofrenda + lib_mes.especiales }}</td>
-			<td>{{lib_mes.remesa_enviada}}</td>
+			<td class="no-padding-bottom">{{ lib_mes.diezmos + lib_mes.ofrendas + lib_mes.especiales }}</td>
+			<td class="no-padding-bottom">{{ lib_mes.ofrenda + lib_mes.especiales }}</td>
+			<td class="no-padding-bottom">{{lib_mes.remesa_enviada}}</td>
 			
 
 			<td class="no-padding">
