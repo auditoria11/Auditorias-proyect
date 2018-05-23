@@ -212,23 +212,221 @@ angular.module("auditoriaApp")
 				// Distritos
 				
 				consulta = "INSERT INTO distritos(nombre, alias, zona, pastor_id) VALUES(?,?,?,?) ";
-				ConexionServ.query(consulta, ['TAME ORIENTAL', 'TAM-ORI', 'TAME',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
 				
-				ConexionServ.query(consulta, ['TAME CENTRAL', 'TAM-CEN', 'TAME',  3]).then(function(result) {
+				ConexionServ.query(consulta, ['Arauca Central', 'DSARAUC01', 'TAME',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				
-				ConexionServ.query(consulta, ['EMMANUEL TAME', 'EMM-TAME', 'TAME',  5]).then(function(result) {
+
+				ConexionServ.query(consulta, ['Arauca Betania', 'DSARABE01', 'TAME',  2]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+				ConexionServ.query(consulta, ['Arauquita', 'DSARAUQ01', 'TAME',  3]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Arauquita Maranatha', 'DSARAUQ02', 'TAME',  4]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Bethel', 'DSBETHE01', 'TAME',  5]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Cúcuta Central', 'DSCUCUC01', 'TAME',  6]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Canaán', 'DSCANAA01', 'TAME',  7]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Fortul', 'DSFORTU01', 'TAME',  8]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Juan Atalaya', 'DSJUANA01', 'TAME',  9]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Libertad', 'DSLIBER01', 'TAME',  10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Nuevo Caranal', 'DSCARAN01', 'TAME',  11]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Ocaña', 'DSOCAÑA01', 'TAME',  12]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Palestina', 'DSPALES01', 'TAME',  13]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Pamplona', 'DSPAMPL01', 'TAME',  14]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Patios', 'DSPATIO01', 'TAME',  15]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Pueblo Nuevo', 'DSPUEBL01', 'TAME',  16]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Redención', 'DSREDEN01', 'TAME',  17]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Renacer', 'DSRENAC01', 'TAME',  18]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Cubará', 'DSREDCU01', 'TAME',  19]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+
+				ConexionServ.query(consulta, ['Saravena Central', 'DSSARAV01', 'TAME',  20]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+
+				ConexionServ.query(consulta, ['Saravena Central', 'DSSARAV01', 'TAME',  21]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Tame Central', 'DSTAMEA01', 'TAME',  22]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Tame Oriental', 'DSTAMET01', 'TAME',  23]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Tibú', 'DSTIBUN01', 'TAME',  24]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Cúcuta Sión', 'DSSIONA01', 'TAME',  25]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Vichada', 'DSVICHA01', 'TAME',  26]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Getsemani', 'DSVILGE01', 'TAME',  27]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+
+				ConexionServ.query(consulta, ['Villa del Rosario', 'DSVILLA01', 'TAME',  28]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Tame Emmanuel', 'DSTAMEE01', 'TAME',  29]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				
 				
 				// Iglesias

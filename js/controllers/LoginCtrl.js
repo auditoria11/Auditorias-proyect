@@ -65,12 +65,13 @@ angular.module('auditoriaApp')
 				// Distritos
 				
 				consulta = "INSERT INTO distritos(nombre, alias, zona, pastor_id) VALUES(?,?,?,?) ";
+				// 1
 				ConexionServ.query(consulta, ['TAME ORIENTAL', 'TAM-ORI', 'TAME',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				
+				// 2
 				ConexionServ.query(consulta, ['TAME CENTRAL', 'TAM-CEN', 'TAME',  3]).then(function(result) {
 		
 				}, function(tx) {
@@ -86,8 +87,8 @@ angular.module('auditoriaApp')
 				
 				// Iglesias
 				
-				consulta = "INSERT INTO iglesias(nombre, alias, distrito_id) VALUES(?,?,?) ";
-				ConexionServ.query(consulta, ['EMAUS', 'EMAUS', 2]).then(function(result) {
+				consulta = "INSERT INTO iglesias(codigo, nombre, alias, distrito_id) VALUES(?,?,?) ";
+				ConexionServ.query(consulta, ['DSBETHE01', 'DSBETHE01', 'EMAUS', 2]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
