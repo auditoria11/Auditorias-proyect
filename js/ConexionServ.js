@@ -24,8 +24,10 @@ angular.module('auditoriaApp')
     sqlusuarios = "CREATE TABLE IF NOT EXISTS usuarios (id integer," +
                 "nombres varchar(100)  NOT NULL collate nocase," +
                 "apellidos varchar(100)  DEFAULT NULL collate nocase," +
+                "email varchar(200)  DEFAULT NULL collate nocase," +
                 "sexo varchar(100)  NOT NULL," +
                 "tipo varchar(100)  NOT NULL," + // Auditor, Pastor, Tesorero
+                "is_active integer(1)  DEFAULT '1'," +
                 "distrito_id integer DEFAULT NULL," +
                 "iglesia_id integer DEFAULT NULL," +
                 "auditoria_id integer DEFAULT NULL," +
@@ -44,10 +46,12 @@ angular.module('auditoriaApp')
                 "mes varchar(100)  NOT NULL collate nocase," +
                 "orden integer  DEFAULT NULL," +
                 "auditoria_id integer  NOT NULL," +
-                "diezmos integer  DEFAULT NULL ," +
-                "ofrendas integer  DEFAULT NULL ," +
-                "especiales integer  DEFAULT NULL ," + 
-                "remesa_enviada integer  DEFAULT NULL )";
+                "diezmos integer  DEFAULT 0 ," +
+                "ofrendas integer  DEFAULT 0 ," +
+                "especiales integer  DEFAULT 0 ," + 
+                "gastos integer  DEFAULT 0 ," + 
+                "gastos_soportados integer  DEFAULT 0 ," + 
+                "remesa_enviada integer  DEFAULT 0 )";
 
     // Dinero recogido en los 5 o 4 sábados del mes. Puede especificar por sábado o por total
     sqlLibSem = "CREATE TABLE IF NOT EXISTS lib_semanales (id integer," +
@@ -67,6 +71,11 @@ angular.module('auditoriaApp')
                 "diezmo_5 integer DEFAULT 0," + // Diezmos recogidos el QUINTO sábado del mes
                 "ofrenda_5 integer  DEFAULT 0 ," +
                 "especial_5 integer  DEFAULT 0 ," + 
+                "diaconos_1 integer  DEFAULT 0," + // Suma del libro de diáconos por sábado
+                "diaconos_2 integer  DEFAULT 0 ," +
+                "diaconos_3 integer  DEFAULT 0 ," + 
+                "diaconos_4 integer  DEFAULT 0 ," + 
+                "diaconos_5 integer  DEFAULT 0 ," + 
                 "total_diezmos integer  DEFAULT 0 ," +  // Diezmos recogidos del mes, no por sábados
                 "total_ofrendas integer  DEFAULT 0 ," +  // Ofrendas recogidas del mes, no por sábados
                 "total_especiales integer  DEFAULT 0 ," +  // Ofrendas especiales recogidas del mes, no por sábados
@@ -87,15 +96,16 @@ angular.module('auditoriaApp')
                 "fecha varchar(100)  DEFAULT NULL collate nocase," +
                 "descripcion varchar(250)  DEFAULT NULL collate nocase )";
 
-    
+    /*
     // Sumatorias de las facturas que tiene la iglesia por mes
     sqlSoportesMes = "CREATE TABLE IF NOT EXISTS soportes_mes (id integer," +
                 "libro_mes_id integer  NOT NULL," +
                 "valor integer  NOT NULL," +
                 "descripcion varchar(250)  DEFAULT NULL collate nocase )";
-
+    */
+   
     // Gastos registrados. Tiene que coincidir con los gastos que tienen soporte en soportes_mes
-    sqlGatosMes = "CREATE TABLE IF NOT EXISTS gastos_mes (id integer," +
+    sqlGastosMes = "CREATE TABLE IF NOT EXISTS gastos_mes (id integer," +
                 "libro_mes_id integer  NOT NULL," +
                 "valor integer  NOT NULL," +
                 "descripcion varchar(250)  DEFAULT NULL collate nocase )";
@@ -107,16 +117,14 @@ angular.module('auditoriaApp')
                 "option2 varchar(100)  NOT NULL, " +
                 "option3 varchar(100)  NOT NULL, " +
                 "option4 varchar(100)  NOT NULL, " +
-                "auditoria varchar(100) NOT NULL ) "
-                  ;   
+                "auditoria varchar(100) NOT NULL ) ";   
 
 
 
-sqlrespuestas = "CREATE TABLE IF NOT EXISTS respuestas (id integer," +
+    sqlrespuestas = "CREATE TABLE IF NOT EXISTS respuestas (id integer," +
                 "pregunta_id varchar(100)  NOT NULL collate nocase," +
                 "auditoria_id varchar(100)  DEFAULT NULL collate nocase," +
-                "respuestas varchar(100)  NOT NULL )" 
-             ;       
+                "respuestas varchar(100)  NOT NULL )";       
 
            
 
@@ -189,16 +197,18 @@ sqlrespuestas = "CREATE TABLE IF NOT EXISTS respuestas (id integer," +
                 }, function(tx,error){
                     console.log("Pagos Destinos Tabla No se pudo crear", error.message);
                 })
-
+                
+                /*
                 tx.executeSql( sqlSoportesMes , [], function (tx, result) {
                     // console.log('Soportes Mes Tabla creada');
                     defered.resolve('Soportes Mes Tabla creada');
                 }, function(tx,error){
                     console.log("Soportes Mes Tabla No se pudo crear", error.message);
                 })
+                */
 
 
-                tx.executeSql( sqlGatosMes , [], function (tx, result) {
+                tx.executeSql( sqlGastosMes , [], function (tx, result) {
                     // console.log('Gastos Mes Tabla creada');
                     defered.resolve('Gastos Mes Tabla creada');
                 }, function(tx,error){

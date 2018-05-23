@@ -2,7 +2,11 @@ angular.module("auditoriaApp")
 
 .controller("LibroMesCtrl", function($scope, ConexionServ, $filter, $uibModal, toastr) {
 
-	$scope.entidades 		= true;
+	
+	$scope.entidades 				= true;
+	$scope.widget_maximized 		= false;
+	$scope.widget_maximized_totales = false;
+	
     $scope.distrito_new 	= {};
 		$scope.modentidades 	= false;
 		$scope.verCrearDistrito = false;
@@ -72,55 +76,48 @@ angular.module("auditoriaApp")
 		        	return libro_mes;
 		        }
 		    },
-	        controller: function ($uibModalInstance, $scope, libro_mes, ConexionServ) {
-	        	$scope.libro = libro_mes;
-
-
-				$scope.ok = function () {
-				    $uibModalInstance.close('Cerrado');
-				};
-
-
-				$scope.cambiaValor = function(libro, columna, colum_mes) {
-
-					consulta 	= 'UPDATE lib_semanales SET ' + columna + '=? WHERE rowid=?';
-					colum 		= columna.charAt(0).toUpperCase() + columna.slice(1);
-					
-					ConexionServ.query(consulta, [libro[columna], libro.rowid]).then(function(){
-
-						consulta 	= 'UPDATE lib_mensuales SET ' + colum_mes + '=? WHERE rowid=?';
-						total 		= 0;
-
-						if (colum_mes == 'diezmos') {
-							total 		= libro.diezmo_1 + libro.diezmo_2 + libro.diezmo_3 + libro.diezmo_4 + libro.diezmo_5;
-						}
-						if (colum_mes == 'ofrendas') {
-							total 		= libro.ofrenda_1 + libro.ofrenda_2 + libro.ofrenda_3 + libro.ofrenda_4 + libro.ofrenda_5;
-						}
-						if (colum_mes == 'especiales') {
-							total 		= libro.especial_1 + libro.especial_2 + libro.especial_3 + libro.especial_4 + libro.especial_5;
-						}
-						console.log(total, libro);
-						
-						ConexionServ.query(consulta, [total, libro.rowid]).then(function(){
-							toastr.success(colum + ' guardado');
-						}, function(){
-							toastr.error(colum + ' NO guardado');
-						});
-
-					}, function(){
-						toastr.error(colum + ' NO guardado');
-					});
-
-				}
-
-	        	return ;
-	        }
+	        controller: 'LibroSemanalModalCtrl' // En LibroMesModales.js 
 	    });
 
 	    modalInstance.result.then(function (result) {
+			console.log(result);
+			for (let i = 0; i < $scope.lib_meses.length; i++) {
+				const element = $scope.lib_meses[i];
+				
+				if (result.rowid == element.rowid) {
+					$scope.lib_meses.slice(i, 1, element);
+				}
+			}
+	    }, function(r2){
 	    	$scope.traerDatos();
-	        console.log(result);
+	    });
+
+
+	}
+
+
+
+	$scope.abrirGastos = function(libro_mes) {
+
+	    var modalInstance = $uibModal.open({
+	        templateUrl: 'templates/libros/gastosMesModal.html',
+	        resolve: {
+		        libro_mes: function () {
+		        	return libro_mes;
+		        }
+		    },
+	        controller: 'GastosMesCtrl' // En LibroMesModales.js 
+	    });
+
+	    modalInstance.result.then(function (result) {
+			console.log(result);
+			for (let i = 0; i < $scope.lib_meses.length; i++) {
+				const element = $scope.lib_meses[i];
+				
+				if (result.rowid == element.rowid) {
+					$scope.lib_meses.slice(i, 1, element);
+				}
+			}
 	    }, function(r2){
 	    	$scope.traerDatos();
 	    });
@@ -145,8 +142,9 @@ angular.module("auditoriaApp")
 
 
 
-  $scope.crear_libronuevo = function(libro_new) {
-
+	$scope.crear_libronuevo = function(libro_new) {
+		$scope.creando_libro = true;
+		
   		if (libro_new.mes.length > 1) {
   			toastr.warning('Solo puedes seleccionar un mes.');
   			return;
@@ -165,10 +163,6 @@ angular.module("auditoriaApp")
   		year_temp 	= libro_new.year[0];
   		mes_temp 	= libro_new.mes[0];
 
-  		// Movemos al siguiente mes
-  		if (mes_temp=='Enero') {libro_new.mes[0] = 'Febrero'}else if(mes_temp=='Febrero'){libro_new.mes[0] = 'Marzo'}else if(mes_temp=='Marzo'){libro_new.mes[0] = 'Abril'}else if(mes_temp=='Abril'){libro_new.mes[0] = 'Mayo'}else if(mes_temp=='Mayo'){libro_new.mes[0] = 'Junio'}else if(mes_temp=='Junio'){libro_new.mes[0] = 'Julio'}
-  			else if(mes_temp=='Julio'){libro_new.mes[0] = 'Agosto'}else if(mes_temp=='Agosto'){libro_new.mes[0] = 'Septiembre'}else if(mes_temp=='Septiembre'){libro_new.mes[0] = 'Octubre'}else if(mes_temp=='Octubre'){libro_new.mes[0] = 'Noviembre'}else if(mes_temp=='Noviembre'){libro_new.mes[0] = 'Diciembre'}else if(mes_temp=='Diciembre'){libro_new.mes[0] = 'Enero'};
-
 
 		consulta 	= 'INSERT INTO lib_mensuales(year, mes, auditoria_id, diezmos, ofrendas, especiales, remesa_enviada) VALUES(?,?,?,?,?,?,?)';
 		
@@ -178,8 +172,21 @@ angular.module("auditoriaApp")
 			ConexionServ.query(consulta, [result.insertId]).then(function(result) {
 				$scope.traerDatos();
 			});
+			
+			// Movemos al siguiente mes
+			if (mes_temp=='Enero') {libro_new.mes[0] = 'Febrero'}else if(mes_temp=='Febrero'){libro_new.mes[0] = 'Marzo'}else if(mes_temp=='Marzo'){libro_new.mes[0] = 'Abril'}else if(mes_temp=='Abril'){libro_new.mes[0] = 'Mayo'}else if(mes_temp=='Mayo'){libro_new.mes[0] = 'Junio'}else if(mes_temp=='Junio'){libro_new.mes[0] = 'Julio'}
+			  else if(mes_temp=='Julio'){libro_new.mes[0] = 'Agosto'}else if(mes_temp=='Agosto'){libro_new.mes[0] = 'Septiembre'}else if(mes_temp=='Septiembre'){libro_new.mes[0] = 'Octubre'}else if(mes_temp=='Octubre'){libro_new.mes[0] = 'Noviembre'}else if(mes_temp=='Noviembre'){libro_new.mes[0] = 'Diciembre'}
+			  else if(mes_temp=='Diciembre'){
+					libro_new.year[0] 	= '' + (parseInt(libro_new.year[0]) + 1);
+					console.log(libro_new.year[0]);
+				  	libro_new.mes[0] 	= 'Enero';
+				};
+			
+			$scope.creando_libro = false;
+
 		}, function(tx) {
 			console.log("Error no es posbile crear mes", tx);
+			$scope.creando_libro = false;
 		});
 	};
     $scope.cancelar_crear_distrito = function() {
@@ -198,11 +205,25 @@ angular.module("auditoriaApp")
 		
 		ConexionServ.query(consulta, []).then(function(result) {
 			$scope.lib_meses = result;
+			
+			angular.forEach($scope.lib_meses, function(lib_mes, indice){
+				$scope.gastosLibMes(lib_mes);
+			})
+			
 		}, function(tx) {
-			console.log("Error no es posbile crear mes", tx);
+			console.log("Error no se pudo traer datos", tx);
 		});
 
-
+	}
+	
+	$scope.gastosLibMes = function (lib_mes) {
+		consulta 	= 'SELECT g.*, g.rowid FROM gastos_mes g WHERE g.libro_mes_id=?';
+		
+		ConexionServ.query(consulta, [lib_mes.rowid]).then(function(result) {
+			lib_mes.gastos_detalle = result;
+		}, function(tx) {
+			console.log("Error trayendo gastos de mes, ", lib_mes, tx);
+		});
 	}
 
 

@@ -15,7 +15,8 @@ angular.module('auditoriaApp', [
 	'ui.grid.pinning',
 	'ui.grid.expandable',
 	'ui.grid.moveColumns',
-	'toastr'
+	'toastr',
+	'ui.utils.masks'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, uiSelectConfig, toastrConfig){
@@ -91,7 +92,7 @@ angular.module('auditoriaApp', [
 	.state('panel.libromes', {
 		url: '/libromes',
 		controller: 'LibroMesCtrl',
-		templateUrl: 'templates/libromes.html'
+		templateUrl: 'templates/libroMes.html'
 	})
 
 

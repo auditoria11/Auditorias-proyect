@@ -2,13 +2,18 @@ angular.module('auditoriaApp')
 
 .controller('PanelCtrl', function($scope, ConexionServ, $uibModal, USER, AuthServ){
     
-    $scope.USER = USER;
+    $scope.USER             = USER;
+    $scope.sidebar_active   = false;
     
-    console.log('USER en Panel', $scope.USER);
+    //console.log('USER en Panel', $scope.USER);
     
     ConexionServ.createTables();
     
     
+    
+    $scope.sidebar_activar = function () {
+        $scope.sidebar_active = !$scope.sidebar_active;
+    }
     
     $scope.seleccionarDistrito = function () {
         var modal = $uibModal.open({
