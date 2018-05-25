@@ -10,6 +10,7 @@ angular.module('auditoriaApp')
     sqlDistritos = "CREATE TABLE IF NOT EXISTS distritos (id integer," +
                 "nombre varchar(200)  NOT NULL collate nocase," +
                 "alias varchar(100)  DEFAULT NULL collate nocase," +
+                "codigo varchar(100)  DEFAULT NULL collate nocase," +
                 "zona varchar(100)  DEFAULT NULL collate nocase," +
                 "pastor_id integer DEFAULT NULL," +
                 "tesorero_id integer DEFAULT NULL)"; // Tesorero del distrito
@@ -17,6 +18,7 @@ angular.module('auditoriaApp')
    sqlIglesias = "CREATE TABLE IF NOT EXISTS iglesias (id integer," +
                 "nombre varchar(200)  NOT NULL collate nocase," +
                 "alias varchar(100)  DEFAULT NULL collate nocase," +
+                "codigo varchar(100)  DEFAULT NULL collate nocase," +
                 "distrito_id integer DEFAULT NULL," +
                 "tesorero_id integer DEFAULT NULL," + // Tesorero de la iglesia
                 "secretario_id integer DEFAULT NULL)";

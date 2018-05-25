@@ -116,19 +116,22 @@
 								<th scope="col">ID </th>
 								<th scope="col">Nombre</th>
 								<th scope="col">Alias</th>
+								<th scope="col">Código</th>
 								<th scope="col">Pastor</th>
-								<th scope="col">celular</th>
+								
 							</tr>
 						</thead>
 						<tbody>
 
 							<tr ng-repeat="distrito in distritos">
 
-								<td>{{distrito.rowid}}</td>
+								<td>{{$index + 1}}</td>
 								<td>{{distrito.nombre}}</td>
 								<td>{{distrito.alias}}</td>
+								<td>{{distrito.codigo}}</td>
 								<td>{{distrito.pastor_nombres}}</td>
-								<td>{{distrito.celular}}</td>
+
+								
 								<td scope="col" class=" glyphicon glyphicon-pencil btn btn-primary" href="" ng-click="modificar_distrito(distrito)"></td>
 								<td scope="col" class="glyphicon glyphicon-remove btn btn-danger" href="" ng-click="eliminar_distrito(distrito)"></td>
 							</tr>
