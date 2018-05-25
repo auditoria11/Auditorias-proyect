@@ -1644,6 +1644,72 @@ angular.module('auditoriaApp')
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+
+				// Uniones
+				consulta = "INSERT INTO uniones(nombre, alias, codigo) VALUES(?,?,?) ";
+				ConexionServ.query(consulta, ['UNION COLOMBIANA DEL NORTE', 'AGC111', 'AGC111']).then(function(result) {
+					console.log('uniones prueba insertada');
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				// Asociaciones
+				
+				consulta = "INSERT INTO asociaciones(nombre, alias, codigo, union_id) VALUES(?,?,?,?) ";
+				ConexionServ.query(consulta, ['ASOCIACIÓN DEL ORIENTE', 'AGC811', 'AGC811' , 1]).then(function(result) {
+					console.log('Audi prueba insertada');
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['ASOCIACIÓN DEL NORESTE', 'AGCN11', 'AGCN11' , 1]).then(function(result) {
+					console.log('Audi prueba insertada');
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+
+				ConexionServ.query(consulta, ['ASOCIACIÓN DEL CENTRO ORIENTE', 'AGCT11', 'AGCT11' , 1]).then(function(result) {
+					console.log('Audi prueba insertada');
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['ASOCIACIÓN DEL CARIBE', 'AGCC11', 'AGCC11' , 1]).then(function(result) {
+					console.log('Audi prueba insertada');
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['ASOCIACIÓN DEL ATLANTICO', 'AGC211', 'AGC211' , 1]).then(function(result) {
+					console.log('Audi prueba insertada');
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['ASOCIACIÓN ISLAS', 'AGC611', 'AGC611' , 1]).then(function(result) {
+					console.log('Audi prueba insertada');
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['ASOCIACIÓN CENTRO OCCIDENTAL', 'AGCW11', 'AGCW11' , 1]).then(function(result) {
+					console.log('Audi prueba insertada');
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['ASOCIACIÓN SUR OCCIDENTAL', 'AGCS11', 'AGCS11' , 1]).then(function(result) {
+					console.log('Audi prueba insertada');
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+					
 				
 				
 			}

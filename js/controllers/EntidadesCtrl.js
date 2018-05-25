@@ -110,8 +110,19 @@ angular.module("auditoriaApp")
 
     	ConexionServ.query(consulta, []).then(function(result) {
           $scope.distritos = result;
+          console.log(result);
         }, function(tx) {
           console.log("Error no es posbile traer Iglesias", tx);
+        });
+
+
+        // Traemos Uniones
+		consulta = "SELECT rowid, nombre, alias, codigo, division_id from uniones";
+
+    	ConexionServ.query(consulta, []).then(function(result) {
+          $scope.uniones = result;
+        }, function(tx) {
+          console.log("Error no es posbile traer Uniones", tx);
         });
     };
 
@@ -166,6 +177,35 @@ angular.module("auditoriaApp")
         }
       );
     };
+
+
+
+     $scope.actualizarDistrito = function(actudistriter){
+	  	
+	 consulta ="UPDATE  preguntas SET nombre=?, alias=?, codigo=? ,pastor_id=? WHERE rowid=? "
+	   ConexionServ.query(consulta,[actudistriter.nombre, actudistriter.rowid]).then(function(result){
+
+           console.log('Pregunta Actualizado', result)
+           alert('Pregunta actualizado correctamente presione F5 para recargar')
+
+           for (var i = 0; i < $scope.auditorias.length; i++) {
+			   		fecha = new Date($scope.auditorias[i].fecha);
+			   		console.log(fecha);
+				  	$scope.auditorias[i].fecha = fecha.getFullYear() +  ' / '  + fecha.getMonth() +  ' / '  + fecha.getDate();
+
+				   
+				  	
+				  }
+
+		   
+
+	   } , function(tx){
+
+	   	console.log('Pregunta no se pudo actualizar' , tx)
+
+	   });
+
+	 } 
 
 	
 	

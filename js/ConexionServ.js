@@ -7,6 +7,22 @@ angular.module('auditoriaApp')
 
     db = window.openDatabase("AuditFast.db", '1', 'AuditFast', 1024 * 1024 * 49);
 
+    sqlUniones = "CREATE TABLE IF NOT EXISTS uniones (id integer," +
+                "nombre varchar(200)  NOT NULL collate nocase," +
+                "alias varchar(100)  DEFAULT NULL collate nocase," +
+                "codigo varchar(100)  DEFAULT NULL collate nocase," +
+                "presidente integer DEFAULT NULL," +
+                "pais varchar(100)  DEFAULT NULL collate nocase," +
+                "division_id integer DEFAULT NULL)"; // Tesorero del distrito
+
+    sqlAsociaciones = "CREATE TABLE IF NOT EXISTS asociaciones (id integer," +
+                "nombre varchar(200)  NOT NULL collate nocase," +
+                "alias varchar(100)  DEFAULT NULL collate nocase," +
+                "codigo varchar(100)  DEFAULT NULL collate nocase," +
+                "zona varchar(100)  DEFAULT NULL collate nocase," +
+                "union_id integer DEFAULT NULL," +
+                "tesorero_id integer DEFAULT NULL)"; // Tesorero del distrito
+
     sqlDistritos = "CREATE TABLE IF NOT EXISTS distritos (id integer," +
                 "nombre varchar(200)  NOT NULL collate nocase," +
                 "alias varchar(100)  DEFAULT NULL collate nocase," +
@@ -186,11 +202,26 @@ angular.module('auditoriaApp')
                     console.log("Libros Semanales Tabla No se pudo crear", error.message);
                 })
 
+                tx.executeSql( sqlUniones , [], function (tx, result) {
+                    // console.log('Libros mensuales Tabla creada');
+                    defered.resolve('uniones Tabla creada');
+                }, function(tx,error){
+                    console.log("uniones Tabla No se pudo crear", error.message);
+                })
+
+
                 tx.executeSql( sqlDestinos , [], function (tx, result) {
                     console.log('Destinos Tabla creada');
                     defered.resolve('Destinos Tabla creada');
                 }, function(tx,error){
                     console.log("Destinos Tabla No se pudo crear", error.message);
+                })
+
+                 tx.executeSql( sqlAsociaciones , [], function (tx, result) {
+                    console.log('Asociaciones Tabla creada');
+                    defered.resolve('Asociaciones Tabla creada');
+                }, function(tx,error){
+                    console.log("Asociaciones Tabla No se pudo crear", error.message);
                 })
 
                 tx.executeSql( sqlPagosDest , [], function (tx, result) {
