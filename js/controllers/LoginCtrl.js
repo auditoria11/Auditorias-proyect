@@ -65,21 +65,21 @@ angular.module('auditoriaApp')
 				// Distritos
 				
 				consulta = "INSERT INTO distritos(nombre, alias, codigo, pastor_id) VALUES(?,?,?,?) ";
-				
+				//1
 				ConexionServ.query(consulta, ['Arauca Central', 'DSARAUC01', 'DSARAUC01',   1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-
+				//2
 				ConexionServ.query(consulta, ['Arauca Betania', 'DSARABE01', 'DSARABE01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-
+				//3
 				ConexionServ.query(consulta, ['Arauquita', 'DSARAUQ01', 'DSARAUQ01',  1]).then(function(result) {
 		
 				}, function(tx) {
@@ -87,24 +87,28 @@ angular.module('auditoriaApp')
 				});
 
 
-
+				//4
 				ConexionServ.query(consulta, ['Arauquita Maranatha', 'DSARAUQ02', 'DSARAUQ02',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
+				//5
 				ConexionServ.query(consulta, ['Bethel', 'DSBETHE01', 'DSBETHE01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
+				//6
 				ConexionServ.query(consulta, ['Cúcuta Central', 'DSCUCUC01', 'DSCUCUC01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+				//7
 
 				ConexionServ.query(consulta, ['Canaán', 'DSCANAA01', 'DSCANAA01',  1]).then(function(result) {
 		
@@ -112,17 +116,21 @@ angular.module('auditoriaApp')
 					console.log("Dato original no insertado", tx);
 				});
 
+				//8
+
 				ConexionServ.query(consulta, ['Fortul', 'DSFORTU01', 'DSFORTU01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-
+				//9
 				ConexionServ.query(consulta, ['Juan Atalaya', 'DSJUANA01', 'DSJUANA01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+				//10
 
 				ConexionServ.query(consulta, ['Libertad', 'DSLIBER01', 'DSLIBER01',  1]).then(function(result) {
 		
@@ -130,11 +138,15 @@ angular.module('auditoriaApp')
 					console.log("Dato original no insertado", tx);
 				});
 
+				//11
+
 				ConexionServ.query(consulta, ['Nuevo Caranal', 'DSCARAN01', 'DSCARAN01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+				//12
 
 				ConexionServ.query(consulta, ['Ocaña', 'DSOCAÑA01', 'DSOCAÑA01',  1]).then(function(result) {
 		
@@ -142,11 +154,15 @@ angular.module('auditoriaApp')
 					console.log("Dato original no insertado", tx);
 				});
 
+				//13
+
 				ConexionServ.query(consulta, ['Palestina', 'DSPALES01', 'DSPALES01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+				//14
 
 				ConexionServ.query(consulta, ['Pamplona', 'DSPAMPL01', 'DSPAMPL01',  1]).then(function(result) {
 		
@@ -154,11 +170,15 @@ angular.module('auditoriaApp')
 					console.log("Dato original no insertado", tx);
 				});
 
+				//15
+
 				ConexionServ.query(consulta, ['Patios', 'DSPATIO01', 'DSPATIO01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+				//16
 
 				ConexionServ.query(consulta, ['Pueblo Nuevo', 'DSPUEBL01', 'DSPUEBL01',  1]).then(function(result) {
 		
@@ -166,23 +186,30 @@ angular.module('auditoriaApp')
 					console.log("Dato original no insertado", tx);
 				});
 
+				//17
+
 				ConexionServ.query(consulta, ['Redención', 'DSREDEN01', 'DSREDEN01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
+				//18
+
 				ConexionServ.query(consulta, ['Renacer', 'DSRENAC01', 'DSRENAC01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+				//19
 
 				ConexionServ.query(consulta, ['Cubará', 'DSREDCU01', 'DSREDCU01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+				//20
 
 
 				ConexionServ.query(consulta, ['Saravena Central', 'DSSARAV01', 'DSSARAV01',  1]).then(function(result) {
@@ -191,17 +218,23 @@ angular.module('auditoriaApp')
 					console.log("Dato original no insertado", tx);
 				});
 
+				//21
+
 				ConexionServ.query(consulta, ['Tame Central', 'DSTAMEA01', 'DSTAMEA01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
+				//22
+
 				ConexionServ.query(consulta, ['Tame Oriental', 'DSTAMET01', 'DSTAMET01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+				//23
 
 
 				ConexionServ.query(consulta, ['Tibú', 'DSTIBUN01', 'DSTIBUN01',  1]).then(function(result) {
@@ -210,6 +243,8 @@ angular.module('auditoriaApp')
 					console.log("Dato original no insertado", tx);
 				});
 
+				//24
+
 
 				ConexionServ.query(consulta, ['Cúcuta Sión', 'DSSIONA01', 'DSSIONA01',  1]).then(function(result) {
 		
@@ -217,11 +252,15 @@ angular.module('auditoriaApp')
 					console.log("Dato original no insertado", tx);
 				});
 
+				//25
+
 				ConexionServ.query(consulta, ['Vichada', 'DSVICHA01', 'DSVICHA01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+				//26
 
 				ConexionServ.query(consulta, ['Getsemani', 'DSVILGE01', 'DSVILGE01',  1]).then(function(result) {
 		
@@ -229,11 +268,15 @@ angular.module('auditoriaApp')
 					console.log("Dato original no insertado", tx);
 				});
 
+				//27
+
 				ConexionServ.query(consulta, ['Villa del Rosario', 'DSVILLA01', 'DSVILLA01',  1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+				//28
 
 				ConexionServ.query(consulta, ['Tame Enmanuel', 'DSTAMEE01', 'DSTAMEE01',  1]).then(function(result) {
 		
@@ -248,33 +291,33 @@ angular.module('auditoriaApp')
 				// Iglesias
 				
 				consulta = "INSERT INTO iglesias(nombre, alias, codigo, distrito_id) VALUES(?,?,?,?) ";
-				ConexionServ.query(consulta, ['Alfa y Omega -  Pueblo Nuevo', 'CALFAY01', 'CALFAY01',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Alfa y Omega -  Pueblo Nuevo', 'CALFAY01', 'CALFAY01',  16]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
 
-				ConexionServ.query(consulta, ['Alfa y Omega -  Redencion', 'CALFAY02', 'CALFAY02',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Alfa y Omega -  Redencion', 'CALFAY02', 'CALFAY02',  17]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Alfa y Omega - Tame Central', 'CALFAY03', 'CALFAY03',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Alfa y Omega - Tame Central', 'CALFAY03', 'CALFAY03',  21]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
 
-				ConexionServ.query(consulta, ['Alfa y Omega - Tame Central', 'CALFAY03', 'CALFAY03',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Alfa y Omega - Tame Central', 'CALFAY03', 'CALFAY03',  9]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Alfa y Omega - D. Atalaya', 'CALFAY04', 'CALFAY04',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Alfa y Omega - D. Atalaya', 'CALFAY04', 'CALFAY04',  3]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
@@ -289,296 +332,296 @@ angular.module('auditoriaApp')
 
 
 
-				ConexionServ.query(consulta, ['Arauca -  Arauca Central', 'CARAUC01', 'CARAUC01',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Arauca -  Arauca Central', 'CARAUC01', 'CARAUC01',  3]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
 
-				ConexionServ.query(consulta, ['Arauquita -  Arauquita', 'CARAUQ01', 'CARAUQ01',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Arauquita -  Arauquita', 'CARAUQ01', 'CARAUQ01',  3]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
 
-				ConexionServ.query(consulta, ['Bendición- Reiner -  Arauquita -  Arauquita', 'CBENDI01', 'CBENDI01',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Bendición- Reiner -  Arauquita -  Arauquita', 'CBENDI01', 'CBENDI01',  3]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
 
-				ConexionServ.query(consulta, ['Berea -  Vichada', 'CBEREA01', 'CBEREA01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-				
-
-
-				ConexionServ.query(consulta, ['Betania Malvinas -  Nuevo Caranal', 'CBETAN01', 'CBETAN01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Betania -  Arauca Betania', 'CBETAN02', 'CBETAN02',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Betania -  Cubará', 'CBETAN03', 'CBETAN03',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Betenia -  Juan Atalaya', 'CBETAN04', 'CBETAN04',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-				ConexionServ.query(consulta, ['Betania - D. Fortul', 'CBETAN05', 'CBETAN05',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Berea -  Vichada', 'CBEREA01', 'CBEREA01',  25]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 				
 
-				ConexionServ.query(consulta, ['Betania - Palestina', 'CBETAN06', 'CBETAN06',  1]).then(function(result) {
+
+				ConexionServ.query(consulta, ['Betania Malvinas -  Nuevo Caranal', 'CBETAN01', 'CBETAN01',  11]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
 
-				ConexionServ.query(consulta, ['Bethel -  Bethel', 'CBETHE01', 'CBETHE01',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Betania -  Arauca Betania', 'CBETAN02', 'CBETAN02',  2]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
 
-
-				ConexionServ.query(consulta, ['Bethel -  Cucuta Sión', 'CBETHE02', 'CBETHE02',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Betania -  Cubará', 'CBETAN03', 'CBETAN03',  19]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
 
-				ConexionServ.query(consulta, ['Bethel - Abrego D. Ocaña', 'CBETHE03', 'CBETHE03',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Betenia -  Juan Atalaya', 'CBETAN04', 'CBETAN04',  9]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-
-				ConexionServ.query(consulta, ['Brasilia -  Arauquita Maranatha', 'CBRASI01', 'CBRASI01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Buenos Aires -  Pueblo Nuevo', 'CBUENO01', 'CBUENO01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['El Buen Pastor -  Pueblo Nuevo', 'CBUENP01', 'CBUENP01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-
-				ConexionServ.query(consulta, ['Cabssel -  D. Tibú', 'CCABSS01', 'CCABSS01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-				ConexionServ.query(consulta, ['Caled -  Juan Atalaya', 'CCALED01', 'CCALED01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Caleb - Caranal', 'CCALEB01', 'CCALEB01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Canaan -  Saravena Bethel', 'CCANAA01', 'CCANAA01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Canaan -  Cubará', 'CCANAA02', 'CCANAA02',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Canaan -  D. Patios', 'CCANAA03', 'CCANAA03',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-
-				ConexionServ.query(consulta, ['Canaan -  D. Canaan', 'CCANAA04', 'CCANAA04',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-				ConexionServ.query(consulta, ['Canaan - D. Tame Central', 'CCANAA05', 'CCANAA05',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-				ConexionServ.query(consulta, ['Canaan - D. Ocaña', 'CCANAA06', 'CCANAA06',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Caño Cristal -  Fortul', 'CCAÑOC01', 'CCAÑOC01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Central de Cúcuta -  Cucuta Central', 'CCENTR01', 'CCENTR01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Casa de Oración - D. Renacer', 'CCASAO01', 'CCASAO01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Costa Hermosa -  Arauca Betania', 'CCOSTA01', 'CCOSTA01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-				ConexionServ.query(consulta, ['Cravonorte -  Arauca Betania', 'CCRAVO01', 'CCRAVO01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-				ConexionServ.query(consulta, ['Cristo la Esperanza -  Getsemani', 'CCRIST01', 'CCRIST01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-				ConexionServ.query(consulta, ['Cristo Redentor - Patios', 'CCRIRE01', 'CCRIRE01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-				ConexionServ.query(consulta, ['Ebenezer -  Tame Central', 'CEBENE01', 'CEBENE01',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-				ConexionServ.query(consulta, ['Ebenezer-Oasis -  Arauquita Maranatha', 'CEBENE02', 'CEBENE02',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-				ConexionServ.query(consulta, ['Ebenezer -  Palestina', 'CEBENE03', 'CEBENE03',  1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-
-
-				ConexionServ.query(consulta, ['Ebenezer -  Redencion', 'CEBENE04', 'CEBENE04',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Betania - D. Fortul', 'CBETAN05', 'CBETAN05',  8]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 				
 
-				ConexionServ.query(consulta, ['Ebenezer Chitaga - D Pamplona', 'CEBENE05', 'CEBENE05',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Betania - Palestina', 'CBETAN06', 'CBETAN06',  13]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
 
-				ConexionServ.query(consulta, ['Eden -  Arauquita Maranatha', 'CEDENI01', 'CEDENI01',  1]).then(function(result) {
+				ConexionServ.query(consulta, ['Bethel -  Bethel', 'CBETHE01', 'CBETHE01',  5]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Eden -  Saravena Central', 'CEDENI02', 'CEDENI02',  1]).then(function(result) {
+
+
+				ConexionServ.query(consulta, ['Bethel -  Cucuta Sión', 'CBETHE02', 'CBETHE02',  24]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Eden -  Villa Del Rosario', 'CEDENI03', 'CEDENI03',  1]).then(function(result) {
+
+				ConexionServ.query(consulta, ['Bethel - Abrego D. Ocaña', 'CBETHE03', 'CBETHE03',  12]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Eden -  Ocaña', 'CEDENI04', 'CEDENI04',  1]).then(function(result) {
+
+				ConexionServ.query(consulta, ['Brasilia -  Arauquita Maranatha', 'CBRASI01', 'CBRASI01',  4]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Eden Brisas - Tame Central', 'CEDENT01', 'CEDENT01',  1]).then(function(result) {
+
+				ConexionServ.query(consulta, ['Buenos Aires -  Pueblo Nuevo', 'CBUENO01', 'CBUENO01',  16]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Efeso -  Tame Oriental', 'CEFESO01', 'CEFESO01',  1]).then(function(result) {
+
+				ConexionServ.query(consulta, ['El Buen Pastor -  Pueblo Nuevo', 'CBUENP01', 'CBUENP01',  16]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Emaus -  Pamplona', 'CEMAUS01', 'CEMAUS01',  1]).then(function(result) {
+
+
+				ConexionServ.query(consulta, ['Cabssel -  D. Tibú', 'CCABSS01', 'CCABSS01',  23]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Caled -  Juan Atalaya', 'CCALED01', 'CCALED01',  9]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Caleb - Caranal', 'CCALEB01', 'CCALEB01',  11]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Canaan -  Saravena Bethel', 'CCANAA01', 'CCANAA01',  5]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Canaan -  Cubará', 'CCANAA02', 'CCANAA02',  19]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Canaan -  D. Patios', 'CCANAA03', 'CCANAA03',  15]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+
+				ConexionServ.query(consulta, ['Canaan -  D. Canaan', 'CCANAA04', 'CCANAA04',  7]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Canaan - D. Tame Central', 'CCANAA05', 'CCANAA05',  21]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Canaan - D. Ocaña', 'CCANAA06', 'CCANAA06',  12]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Caño Cristal -  Fortul', 'CCAÑOC01', 'CCAÑOC01',  8]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Central de Cúcuta -  Cucuta Central', 'CCENTR01', 'CCENTR01',  6]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Casa de Oración - D. Renacer', 'CCASAO01', 'CCASAO01',  18]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Costa Hermosa -  Arauca Betania', 'CCOSTA01', 'CCOSTA01',  2]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Cravonorte -  Arauca Betania', 'CCRAVO01', 'CCRAVO01',  2]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Cristo la Esperanza -  Getsemani', 'CCRIST01', 'CCRIST01',  26]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Cristo Redentor - Patios', 'CCRIRE01', 'CCRIRE01',  15]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Ebenezer -  Tame Central', 'CEBENE01', 'CEBENE01',  21]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Ebenezer-Oasis -  Arauquita Maranatha', 'CEBENE02', 'CEBENE02',  4]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Ebenezer -  Palestina', 'CEBENE03', 'CEBENE03',  13]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Ebenezer -  Redencion', 'CEBENE04', 'CEBENE04',  17]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+				
+
+				ConexionServ.query(consulta, ['Ebenezer Chitaga - D Pamplona', 'CEBENE05', 'CEBENE05',  14]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+
+				ConexionServ.query(consulta, ['Eden -  Arauquita Maranatha', 'CEDENI01', 'CEDENI01',  4]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Eden -  Saravena Central', 'CEDENI02', 'CEDENI02',  20]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Eden -  Villa Del Rosario', 'CEDENI03', 'CEDENI03',  27]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Eden -  Ocaña', 'CEDENI04', 'CEDENI04',  12]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Eden Brisas - Tame Central', 'CEDENT01', 'CEDENT01',  21]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Efeso -  Tame Oriental', 'CEFESO01', 'CEFESO01',  22]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Emaus -  Pamplona', 'CEMAUS01', 'CEMAUS01',  14]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);

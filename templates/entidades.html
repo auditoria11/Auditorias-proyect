@@ -34,7 +34,7 @@
 					<button class="btn btn-primary" ng-show="!verCrearDistrito" >Crear Union</button>
 
 
-                       <table class="table table-bordered">
+                       <table class="table table-bordered table-condensed">
 						<thead>
 							<tr>
 								<th scope="col">ID </th>
@@ -175,39 +175,58 @@
 
 
 
-							<div ng-show="VerActualizarDistrito" class="row" style="margin-bottom: 50px">
-						<div class="box col-md-12">
-							<div class="box-inner">
+
+
+
+
+
+								</div>
+							</div>
+						</div>
+
+
+						<div ng-show="VerActualizandoDistrito" id="editar-distrito" class="row" style="margin-bottom: 50px">
+
+							<div class="box col-md-12">
+
+
+								<div class="box-inner">
+									
+								
+								
+
 								<div class="box-header well">
 									<h2>
-										<i class="glyphicon glyphicon-plus"></i> Actualizar Distrito
+										<i class="glyphicon glyphicon-plus"></i> Actualizar distrito
 									</h2>
 								
 									<div class="box-icon"></div>
 								</div>
-								
-								
+
 								<div class="box-content row">
-									
-									<div class="col-sm-12">
-										<form ng-submit="insertar_distrito(distrito_new)">
+                                   
+                                   <div class="col-sm-12">
+
+                                   	<form ng-submit="ActualizarDistrito(distrito_new_distric)">
 											<div class="row">
 												<div class="form-group col-sm-12">
 													<label for="nombre_distrito_new">Nombre</label>
-													<input required="required" class="form-control" id="nombre_distrito_new" type="text" placeholder="Nombre" ng-model="distrito_new.nombre">
+													<input required="required" class="form-control" id="nombre_distrito_new" type="text" placeholder="Nombre" ng-model="distrito_new_distric.nombre">
 												</div>
 											</div>
-											
+
+
+
 											<div class="row">
 												<div class="form-group col-sm-6">
 														<label for="alias_distrito_new">Alias</label>
-														<input required="required" class="form-control" id="alias_distrito_new" type="text" placeholder="Alias" ng-model="distrito_new.alias">
+														<input required="required" class="form-control" id="alias_distrito_new" type="text" placeholder="Alias" ng-model="distrito_new_distric.alias">
 												</div>
 												
 												<div class="form-group col-sm-6">
 													<label>Pastor</label>
 													
-													<ui-select ng-model="distrito_new.pastor" style="width: 100%;" theme="bootstrap">
+													<ui-select ng-model="distrito_new_distric.pastor" style="width: 100%;" theme="bootstrap">
 														<ui-select-match placeholder="Pastor">
 															<span ng-bind="$select.selected.nombres + ' ' + $select.selected.apellidos"></span>
 														</ui-select-match>
@@ -223,7 +242,7 @@
 												<div class="form-group col-sm-6">
 														<label>Tesorero</label>
 														
-														<ui-select ng-model="distrito_new.tesorero" style="width: 100%;" theme="bootstrap">
+														<ui-select ng-model="distrito_new_distric.tesorero" style="width: 100%;" theme="bootstrap">
 															<ui-select-match placeholder="Tesorero">
 																<span ng-bind="$select.selected.nombres + ' ' + $select.selected.apellidos"></span>
 															</ui-select-match>
@@ -236,61 +255,78 @@
 								
 												<div class="col-sm-6">
 													<label for="zona_distrito_new">Zona</label>
-													<input required="required" class="form-control" id="zona_distrito_new" type="text" placeholder="Zona" ng-model="distrito_new.zona">
-												</div>
+													<input required="required" class="form-control" id="zona_distrito_new" type="text" placeholder="Zona" ng-model="distrito_new_distric.zona">
+											  </div>
+
+
 											</div>
 											
 											<div class="center">
-												<input class="btn btn-warning " type="button" ng-click="cancelar_crear_distrito()" value="Cancelar">
-												<input class="btn btn-primary " type="submit" value="Guardar distrito">
+												<input class="btn btn-warning " type="button" ng-click="Cancelar_Actualizar_Distrito()" value="Cancelar">
+												<input class="btn btn-primary " type="submit" value="Actualizar Distrito">
 											</div>
-					
-										</form>
-									</div>
+
+
+									</form>
+                                   	
+
+                                   </div>
+                                
+
 								</div>
 
 
+								</div>
 
 							</div>
+
+
 						</div>
-					</div>
 	
 					
 					<button class="btn btn-primary" ng-show="!verCrearDistrito" ng-click="crear_distrito()">Crear distrito</button>
 
 				
-						
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th scope="col">ID </th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Alias</th>
-								<th scope="col">Código</th>
-								<th scope="col">Pastor</th>
-								
-							</tr>
-						</thead>
-						<tbody>
+					<div style="height: 500px; overflow: auto;">
+						<table class="table table-bordered table-condensed table-striped table-hover">
+							<thead>
+								<tr>
+									<th scope="col">ID </th>
+									<th scope="col">Nombre</th>
+									<th scope="col">Alias</th>
+									<th scope="col">Código</th>
+									<th scope="col">Pastor</th>
+									<th scope="col">Editar</th>
+									
+								</tr>
+							</thead>
+							<tbody>
 
-							<tr ng-repeat="distrito in distritos">
+								<tr ng-repeat="distrito in distritos">
 
-								<td>{{$index + 1}}</td>
-								<td>{{distrito.nombre}}</td>
-								<td>{{distrito.alias}}</td>
-								<td>{{distrito.codigo}}</td>
-								<td>{{distrito.pastor_nombres}}</td>
+									<td>{{$index + 1}}</td>
+									<td>{{distrito.nombre}}</td>
+									<td>{{distrito.alias}}</td>
+									<td>{{distrito.codigo}}</td>
+									<td>{{distrito.pastor_nombres}}</td>
 
-								
-								<td scope="col" class=" glyphicon glyphicon-pencil btn btn-primary" href="" ng-click="modificar_distrito(distrito)"></td>
-								<td scope="col" class="glyphicon glyphicon-remove btn btn-danger" href="" ng-click="eliminar_distrito(distrito)"></td>
-							</tr>
+									
+									<td style="padding-top: 0; padding-bottom: 0;">
+										
+										<a href="" class="glyphicon glyphicon-pencil btn btn-primary btn-xs"  ng-click="VerActualizarDistrito(distrito)"></a>
+
+										<a href="" class="glyphicon glyphicon-remove btn btn-danger btn-xs"  ng-click="EliminarDistrito(distrito)"></a>
+									</td>
+									
+								</tr>
 
 
 
 
-						</tbody>
-					</table>
+							</tbody>
+						</table>
+					</div>
+
 				</div>
 				
 			</div>
@@ -317,8 +353,6 @@
 				
 				<div class="col-sm-12">
 					
-					
-					<div ui-grid="gridOptions" ></div>
 					
 					
 					<div ng-show="verCrearDistrito" class="row" style="margin-bottom: 50px">
@@ -388,7 +422,7 @@
 											
 											<div class="center">
 												<input class="btn btn-warning " type="button" ng-click="cancelar_crear_distrito()" value="Cancelar">
-												<input class="btn btn-primary " type="submit" value="Guardar distrito">
+												<input class="btn btn-primary " type="submit" value="Guardar Iglesia">
 											</div>
 					
 										</form>
@@ -400,35 +434,11 @@
 	
 					
 					<button class="btn btn-primary" ng-show="!verCrearDistrito" ng-click="crear_distrito()">Crear iglesia</button>
-						
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">ID </th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Alias</th>
-								<th scope="col">Pastor</th>
-								<th scope="col">celular</th>
-							</tr>
-						</thead>
-						<tbody>
+					
 
-							<tr ng-repeat="iglesia in iglesias">
+					<div ui-grid="gridOptions" style="height: 500px" ui-grid-exporter ui-grid-edit ui-grid-cellnav ui-grid-move-columns  ui-grid-resize-columns  ui-grid-auto-resize ui-grid-pinning></div>
+					
 
-								<td>{{iglesia.rowid}}</td>
-								<td>{{iglesia.nombre}}</td>
-								<td>{{iglesia.alias}}</td>
-								<td>{{iglesia.pastor_nombres}} {{iglesia.pastor_apellidos}}</td>
-								<td>{{iglesia.celular}}</td>
-								<td scope="col" class=" glyphicon glyphicon-pencil btn btn-primary" href="" ng-click="modificar_distrito(iglesia)"></td>
-								<td scope="col" class="glyphicon glyphicon-remove btn btn-danger" href="" ng-click="eliminar_distrito(iglesia)"></td>
-							</tr>
-
-
-
-
-						</tbody>
-					</table>
 				</div>
 				
 			</div>
