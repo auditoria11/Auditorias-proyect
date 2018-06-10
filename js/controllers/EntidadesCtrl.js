@@ -8,8 +8,8 @@ angular.module("auditoriaApp")
 	$scope.usuarios 		= [];
 
 	
-	btGrid1 = '<a uib-tooltip="Editar" tooltip-placement="left" class="btn btn-default btn-xs icon-only info" ng-click="grid.appScope.VerActualizarDistrito(row.entity)"><i class="glyphicon glyphicon-pencil "></i></a>'
-	btGrid2 = '<a uib-tooltip="X Eliminar" tooltip-placement="right" class="btn btn-default btn-xs icon-only danger" ng-click="grid.appScope.eliminar(row.entity)"><i class="glyphicon glyphicon-remove  "></i></a>'
+	btGrid1 = '<a uib-tooltip="Editar" tooltip-placement="left" tooltip-append-to-body="true" class="btn btn-default btn-xs icon-only info" ng-click="grid.appScope.Ver_actualizar_iglesia(row.entity)"><i class="glyphicon glyphicon-pencil "></i></a>'
+	btGrid2 = '<a uib-tooltip=" Eliminar" tooltip-placement="right" tooltip-append-to-body="true" class="btn btn-default btn-xs icon-only danger" ng-click="grid.appScope.EliminarIglesia(row.entity)"><i class="glyphicon glyphicon-remove  "></i></a>'
 	bt2 	= '<span style="padding-left: 2px; padding-top: 4px;" class="btn-group">' + btGrid1 + btGrid2 + '</span>'
 		
 	$scope.gridOptions = {
@@ -107,13 +107,13 @@ angular.module("auditoriaApp")
 		});
 		
 		// Traemos IGLESIAS
-		consulta = "SELECT i.rowid, i.nombre, i.alias, i.distrito_id, i.tesorero_id, i.secretario_id, "+
+		$scope.consulta_igle = "SELECT i.rowid, i.nombre, i.alias, i.distrito_id, i.tesorero_id, i.secretario_id, "+
 					"t.nombres as tesorero_nombres, t.apellidos as tesorero_apellidos " +
 				"from iglesias i "+
 				"LEFT JOIN usuarios t ON t.tipo='Tesorero' and t.rowid=i.tesorero_id "+
 				"LEFT JOIN usuarios s ON s.tipo='Secretario' and s.rowid=i.secretario_id ";
 
-		ConexionServ.query(consulta, []).then(function(result) {
+		ConexionServ.query($scope.consulta_igle, []).then(function(result) {
 			$scope.iglesias = result;
 			$scope.gridOptions.data = result;
 		}, function(tx) {
@@ -131,6 +131,7 @@ angular.module("auditoriaApp")
         }, function(tx) {
           console.log("Error no es posbile traer Iglesias", tx);
         });
+
 
 
         // Traemos Uniones
@@ -255,7 +256,8 @@ angular.module("auditoriaApp")
 	 consulta ="UPDATE  distritos SET nombre=?, alias=?, zona=? , pastor_id=?, tesorero_id=? WHERE rowid=? "
 	   ConexionServ.query(consulta,[actuali_distrito.nombre, actuali_distrito.alias, actuali_distrito.zona, actuali_distrito.pastor_id, actuali_distrito.tesorero_id, actuali_distrito.rowid ]).then(function(result){
 
-           console.log('Pregunta Actualizado', result)
+           console.log('Distrito Actualizado', result)
+
            toastr.success('Distrito Actualizado Exitosamente.')
 
          		   
@@ -263,7 +265,7 @@ angular.module("auditoriaApp")
 	   } , function(tx){
 
 	   	console.log('Distrito no se pudo actualizar' , tx)
-	   	 toastr.success('Distrito no se pudo actualizar.')
+	   	 toastr.info('Distrito no se pudo actualizar.')
 
 	   });
 
@@ -272,7 +274,144 @@ angular.module("auditoriaApp")
 	$scope.Cancelar_Actualizar_Distrito = function() {
 		$scope.VerActualizandoDistrito = false;
 	};
+
+
+
+	$scope.ActualizarIglesia = function(iglesia_actua_new){
+
+		if (!iglesia_actua_new.tesorero) {
+			iglesia_actua_new.tesorero = {rowid: null};
+		}
+		if (!iglesia_actua_new.secretario) {
+			iglesia_actua_new.secretario = {rowid: null};
+		}
+
+	 consulta ="UPDATE  iglesias SET nombre=?, alias=?,  distrito_id=?, tesorero_id=?, secretario_id=? WHERE rowid=? "
+	   ConexionServ.query(consulta,[iglesia_actua_new.nombre, iglesia_actua_new.alias,  iglesia_actua_new.distrito.rowid, iglesia_actua_new.tesorero.rowid, iglesia_actua_new.secretario.rowid, iglesia_actua_new.rowid ]).then(function(result){
+
+           console.log('Iglesia Actualizado', result)
+           toastr.success('Iglesia Actualizado Exitosamente.')
+
+         		   
+   iglesia_actua_new.distrito
+	   } , function(tx){
+
+	   	console.log('Iglesia no se pudo actualizar' , tx)
+	   	 toastr.info('Iglesia no se pudo actualizar.')
+
+	   });
+
+	 } 
+
+
+
+	 	$scope.Cancelar_Actualizar_Iglesia = function() {
+		$scope.ver_Actualizando_iglesia = false;
+	  };
+
+
+	$scope.Ver_actualizar_iglesia = function(iglesia) {
+
+		$scope.ver_Actualizando_iglesia = true;
+
+
+		$scope.iglesia_actua_new 	= iglesia;
+
+     	for (var i = 0; i < $scope.distritos.length; i++) {
+     		if (iglesia.distrito_id == $scope.distritos[i].rowid){
+     			$scope.iglesia_actua_new.distrito = $scope.distritos[i];
+     		}
+     	}
+
+
+     	for (var i = 0; i < $scope.usuarios.length; i++) {
+     		if (iglesia.tesorero_id == $scope.usuarios[i].rowid){
+     			$scope.iglesia_actua_new.tesorero = $scope.usuarios[i];
+     		}
+     		if (iglesia.secretario_id == $scope.usuarios[i].rowid){
+     			$scope.iglesia_actua_new.secretario = $scope.usuarios[i];
+     		}
+     	}
+
+
+
+
+     	$location.hash('editar-iglesia');
+     	$anchorScroll()
+
+	};
+
+
+	$scope.EliminarIglesia = function(iglesia){
+	  	
+	  	var res = confirm("¿Seguro que desea eliminar ? ");
+
+		if (res == true) {
+
+		 	consulta ="DELETE FROM iglesias WHERE rowid=? ";
+
+			ConexionServ.query(consulta,[iglesia.rowid]).then(function(result){
+
+				//$scope.iglesias = $filter('filter') ($scope.iglesias, {rowid: '!' + iglesia.rowid}, true)
+                toastr.success('Iglesia eliminado.');
+                
+                ConexionServ.query($scope.consulta_igle, []).then(function(result) {
+					$scope.iglesias = result;
+					$scope.gridOptions.data = result;
+				}, function(tx) {
+					console.log("Error no es posbile traer usuarios", tx);
+				});
+                
+			} , function(tx){
+				console.log('La iglesia no se pudo Eliminar' , tx)
+			});
+		}
+
+     }
+
+
+
+      $scope.CrearIglesia_insertar = function(iglesia) {
+		consulta = 'INSERT INTO iglesias(nombre, alias, distrito_id, tesorero_id, secretario_id) VALUES(?,?,?,?,?)';
+		
+		ConexionServ.query(consulta, [iglesia.nombre, iglesia.alias,  iglesia.distrito_id, iglesia.tesorero_id, iglesia.secretario_id ]).then(function(result) {
+			$scope.traerDatos();
+			  toastr.success('Se ha creado un nuevo Distrito Exitosamente.');
+		}, function(tx) {
+			console.log("Error no es posbile traer Distritos", tx);
+		});
+		
+	}
+
+
+
+  $scope.VerCreandoIglesia = function() {
+
+  	$scope.Vercreando_iglesia = !$scope.Vercreando_iglesia;
+
+
+  };
+
+
+  $scope.cancerl_crear_iglesia = function() {
+
+  	$scope.Vercreando_iglesia = false;
+
+
+  };
+
+
+
+  
+
+
+
+
+	
 	
 	
 	
   });
+
+
+
