@@ -31,7 +31,7 @@
 					<div class="col-sm-12"> 
 
 
-					<button class="btn btn-primary" ng-show="!verCrearDistrito" >Crear Union</button>
+					<button class="btn btn-primary" ng-show="!verCreandoUniones" ng-click="verCrearUnion()" >Crear Union</button>
 
 
                        <table class="table table-bordered table-condensed">
@@ -79,7 +79,162 @@
 			</div>
 	    </div>
   </div>
-						
+
+
+   <div class="row">
+	<div class="box col-md-12">
+		<div class="box-inner">
+			<div class="box-header well">
+				<h2>
+					<i class="glyphicon glyphicon-info-sign"></i> Uniones
+				</h2>
+			
+				<div class="box-icon"></div>
+			</div>
+			
+			
+			<div class="box-content row">
+				
+				<div class="col-sm-12">
+
+					
+					
+					<div ng-show="verCreandoUniones" class="row" style="margin-bottom: 50px">
+						<div class="box col-md-12">
+							<div class="box-inner">
+								<div class="box-header well">
+									<h2>
+										<i class="glyphicon glyphicon-plus"></i>  Nueva Union
+									</h2>
+								
+									<div class="box-icon"></div>
+								</div>
+								
+								
+								<div class="box-content row">
+									
+									<div class="col-sm-12">
+										<form ng-submit="inserter_union(creatar_union)">
+											<div class="row">
+												<div class="form-group col-sm-12">
+													<label for="nombre_distrito_new">Nombre</label>
+													<input required="required" class="form-control" id="nombre_distrito_new" type="text" placeholder="Nombre" ng-model="inserter_union.nombre">
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="form-group col-sm-6">
+														<label for="alias_distrito_new">Alias</label>
+														<input required="required" class="form-control" id="alias_distrito_new" type="text" placeholder="Alias" ng-model="inserter_union.alias">
+												</div>
+												
+												
+											</div>
+											
+											<div class="row">
+												<div class="form-group col-sm-6">
+													<label for="alias_distrito_new">Codigo</label>
+														<input required="required" class="form-control" id="alias_distrito_new" type="text" placeholder="Alias" ng-model="inserter_union.codigo">
+														
+												</div>
+								
+											</div>
+
+
+
+											
+											<div class="center">
+												<input class="btn btn-warning " type="button" ng-click="cancelar_crear_distrito()" value="Cancelar">
+												<input class="btn btn-primary " type="submit" value="Guardar Union">
+											</div>
+					
+										</form>
+									</div>
+								</div>
+
+
+
+
+
+								</div>
+							</div>
+						</div>
+
+
+
+	<div class="row">
+		<div class="box col-md-12">
+
+			<div class="box-inner">
+
+				<div class="box-header well">
+					<h2>
+						<i class="glyphicon glyphicon-info-sign"></i> Asociaciones
+					</h2>
+				
+					<div class="box-icon"></div>
+				</div>
+
+				<div class="box-content row">
+                   <div class="col-sm-12">
+
+                     
+
+                     <button class="btn btn-primary" ng-show="!verCrearDistrito" >Crear Asociaciones</button>
+
+                   	 <table class="table table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th scope="col">ID </th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Alias</th>
+								<th scope="col">Código</th>
+								<th scope="col">Editar</th>
+								
+								
+							</tr>
+						</thead>
+						<tbody>  
+
+
+
+							<tr ng-repeat="asociation in asociaciones">
+ 
+								<td>{{$index + 1}}</td>
+								<td>{{asociation.nombre}}</td>
+								<td>{{asociation.alias}}</td>
+								<td>{{asociation.codigo}}</td>
+								
+								
+								<td scope="col" class=" glyphicon glyphicon-pencil btn btn-primary" ></td>
+								<td scope="col" class="glyphicon glyphicon-remove btn btn-danger" ></td>
+							</tr>
+
+
+
+
+							</tbody>
+						</table>
+
+
+
+
+
+                   </div>
+                    
+
+				</div>
+					
+					
+				
+
+
+				
+			</div> 
+
+
+		</div>
+	
 
 
 <div class="row">

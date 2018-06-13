@@ -21,7 +21,6 @@ angular.module('auditoriaApp')
                 "codigo varchar(100)  DEFAULT NULL collate nocase," +
                 "zona varchar(100)  DEFAULT NULL collate nocase," +
                 "union_id integer DEFAULT NULL," +
-                "asociacion_id integer DEFAULT NULL," +
                 "tesorero_id integer DEFAULT NULL)"; // Tesorero del distrito
 
     sqlDistritos = "CREATE TABLE IF NOT EXISTS distritos (id integer," +

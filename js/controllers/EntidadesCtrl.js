@@ -142,6 +142,15 @@ angular.module("auditoriaApp")
         }, function(tx) {
           console.log("Error no es posbile traer Uniones", tx);
         });
+
+         // Traemos Asociaciones
+		consulta = "SELECT rowid, nombre, alias, codigo from asociaciones";
+
+    	ConexionServ.query(consulta, []).then(function(result) {
+          $scope.asociaciones = result;
+        }, function(tx) {
+          console.log("Error no es posbile traer asociaciones", tx);
+        });
     };
 
 	$scope.traerDatos();
@@ -402,6 +411,24 @@ angular.module("auditoriaApp")
 
 
 
+
+
+      $scope.CrearIglesia_insertar = function(creatar_union) {
+		consulta = 'INSERT INTO iglesias(nombre, alias, codigo) VALUES(?,?,?,?,?)';
+		
+		ConexionServ.query(consulta, [creatar_union.nombre, creatar_union.alias, creatar_union.codigo]).then(function(result) {
+			$scope.traerDatos();
+			  toastr.success('Se ha creado una Nueva Union Exitosamente.');
+		}, function(tx) {
+			console.log("Error no es posbile traer Uniones", tx);
+		});
+		
+	}
+
+
+	$scope.verCrearUnion = function(){
+      $scope.verCreandoUniones = true;
+	};
   
 
 
