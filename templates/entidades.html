@@ -58,8 +58,8 @@
 								<td>{{union.codigo}}</td>
 								
 								
-								<td scope="col" class=" glyphicon glyphicon-pencil btn btn-primary" ></td>
-								<td scope="col" class="glyphicon glyphicon-remove btn btn-danger" ></td>
+								<td scope="col" ng-click="VerActualizarUniones(union)" class=" glyphicon glyphicon-pencil btn btn-primary" ></td>
+								<td scope="col" ng-click="EliminarUnion(union)" class="glyphicon glyphicon-remove btn btn-danger" ></td>
 							</tr>
 
 
@@ -81,25 +81,11 @@
   </div>
 
 
-   <div class="row">
-	<div class="box col-md-12">
-		<div class="box-inner">
-			<div class="box-header well">
-				<h2>
-					<i class="glyphicon glyphicon-info-sign"></i> Uniones
-				</h2>
-			
-				<div class="box-icon"></div>
-			</div>
-			
-			
-			<div class="box-content row">
-				
-				<div class="col-sm-12">
 
+
+  				
 					
-					
-					<div ng-show="verCreandoUniones" class="row" style="margin-bottom: 50px">
+					<div ng-show="verCreandoUniones"  class="row" style="margin-bottom: 50px">
 						<div class="box col-md-12">
 							<div class="box-inner">
 								<div class="box-header well">
@@ -113,39 +99,37 @@
 								
 								<div class="box-content row">
 									
-									<div class="col-sm-12">
-										<form ng-submit="inserter_union(creatar_union)">
-											<div class="row">
-												<div class="form-group col-sm-12">
-													<label for="nombre_distrito_new">Nombre</label>
-													<input required="required" class="form-control" id="nombre_distrito_new" type="text" placeholder="Nombre" ng-model="inserter_union.nombre">
-												</div>
+										<div class="col-sm-12">
+											<form ng-submit="inserter_union(creatar_union)">
+												<div class="row">
+													<div class="form-group col-sm-12">
+														<label for="nombre_distrito_new">Nombre</label>
+														<input required="required" class="form-control" id="nombre_union_new" type="text" placeholder="Nombre" ng-model="creatar_union.nombre">
+													</div>
 											</div>
-											
-											<div class="row">
-												<div class="form-group col-sm-6">
-														<label for="alias_distrito_new">Alias</label>
-														<input required="required" class="form-control" id="alias_distrito_new" type="text" placeholder="Alias" ng-model="inserter_union.alias">
-												</div>
 												
+												<div class="row">
+													<div class="form-group col-sm-6">
+															<label for="alias_distrito_new">Alias</label>
+															<input required="required" class="form-control" id="alias_union_new" type="text" placeholder="Alias" ng-model="creatar_union.alias">
+													</div>
+													
+													
 												
-											</div>
-											
-											<div class="row">
-												<div class="form-group col-sm-6">
-													<label for="alias_distrito_new">Codigo</label>
-														<input required="required" class="form-control" id="alias_distrito_new" type="text" placeholder="Alias" ng-model="inserter_union.codigo">
-														
+													<div class="form-group col-sm-6">
+														<label for="alias_distrito_new">Codigo</label>
+															<input required="required" class="form-control" id="codigo_union_new" type="text" placeholder="Codigo" ng-model="creatar_union.codigo">
+															
+													</div>
+									
 												</div>
-								
-											</div>
 
 
 
-											
-											<div class="center">
-												<input class="btn btn-warning " type="button" ng-click="cancelar_crear_distrito()" value="Cancelar">
-												<input class="btn btn-primary " type="submit" value="Guardar Union">
+												
+												<div class="center">
+													<input class="btn btn-warning " type="button" ng-click="CancelarCrearUnion()" value="Cancelar">
+													<input class="btn btn-primary " type="submit" value="Guardar Union">
 											</div>
 					
 										</form>
@@ -159,6 +143,87 @@
 								</div>
 							</div>
 						</div>
+
+
+
+						<div ng-show="VeractualizandoUniones"  class="row" style="margin-bottom: 50px">
+
+							<div class="box col-md-12">
+
+
+									<div class="box-inner">
+										
+									
+									<div class="box-header well">
+										<h2>
+											<i class="glyphicon glyphicon-plus"></i> Editar Union
+										</h2>
+									
+										<div class="box-icon"></div>
+									</div>
+
+									<div class="box-content row">
+	                                   
+	                                   <div class="col-sm-12">
+
+	                                   	<form ng-submit="ActualizarUniones(union_creatar_new)">
+												
+																			
+										<div class="row">
+												<div class="form-group col-sm-12">
+
+														<label for="alias_distrito_new">Nombre</label>
+													<input required="required" class="form-control" id="nombre_union_new" type="text" placeholder="Nombre" ng-model="union_creatar_new.nombre">
+												</div>
+										</div>
+													
+										<div class="row">
+													<div class="form-group col-sm-6">
+														<label for="alias_distrito_new">Alias</label>
+														<input required="required" class="form-control" id="alias_union_new" type="text" placeholder="Alias" ng-model="union_creatar_new.alias">
+											        </div>
+															
+															
+														
+											<div class="form-group col-sm-6">
+													<label for="alias_distrito_new">Codigo</label>
+													<input required="required" class="form-control" id="codigo_union_new" type="text" placeholder="Codigo" ng-model="union_creatar_new.codigo">
+																	
+											</div>
+										
+										 
+										</div>
+
+
+																
+												
+												<div class="center">
+													<input class="btn btn-warning " type="button" ng-click="CancelarActualizarUniones()" value="Cancelar">
+													<input class="btn btn-primary " type="submit" value="Actualizar Union">
+												</div>
+
+
+										</form>
+	                                   	
+
+	                                   </div>
+	                                
+
+									</div>
+
+
+								</div>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	
 
 
 
@@ -234,6 +299,68 @@
 
 
 		</div>
+	</div>
+
+
+	<div ng-show="verCreandoUniones"  class="row" style="margin-bottom: 50px">
+						<div class="box col-md-12">
+							<div class="box-inner">
+								<div class="box-header well">
+									<h2>
+										<i class="glyphicon glyphicon-plus"></i>  Nueva Asociación
+									</h2>
+								
+									<div class="box-icon"></div>
+								</div>
+								
+								
+								<div class="box-content row">
+									
+										<div class="col-sm-12">
+											<form ng-submit="inserter_union(creatar_union)">
+												<div class="row">
+													<div class="form-group col-sm-12">
+														<label for="nombre_distrito_new">Nombre</label>
+														<input required="required" class="form-control" id="nombre_union_new" type="text" placeholder="Nombre" ng-model="creatar_union.nombre">
+													</div>
+											</div>
+												
+												<div class="row">
+													<div class="form-group col-sm-6">
+															<label for="alias_distrito_new">Alias</label>
+															<input required="required" class="form-control" id="alias_union_new" type="text" placeholder="Alias" ng-model="creatar_union.alias">
+													</div>
+													
+													
+												
+													<div class="form-group col-sm-6">
+														<label for="alias_distrito_new">Codigo</label>
+															<input required="required" class="form-control" id="codigo_union_new" type="text" placeholder="Codigo" ng-model="creatar_union.codigo">
+															
+													</div>
+									
+												</div>
+
+
+
+												
+												<div class="center">
+													<input class="btn btn-warning " type="button" ng-click="CancelarCrearUnion()" value="Cancelar">
+													<input class="btn btn-primary " type="submit" value="Guardar Union">
+											</div>
+					
+										</form>
+									</div>
+								</div>
+
+
+
+
+
+								</div>
+							</div>
+						</div>
+
 	
 
 

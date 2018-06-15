@@ -413,23 +413,96 @@ angular.module("auditoriaApp")
 
 
 
-      $scope.CrearIglesia_insertar = function(creatar_union) {
-		consulta = 'INSERT INTO iglesias(nombre, alias, codigo) VALUES(?,?,?,?,?)';
+      $scope.inserter_union = function(creatar_union) {
+		consulta = 'INSERT INTO uniones(nombre, alias, codigo) VALUES(?,?,?)';
 		
 		ConexionServ.query(consulta, [creatar_union.nombre, creatar_union.alias, creatar_union.codigo]).then(function(result) {
 			$scope.traerDatos();
 			  toastr.success('Se ha creado una Nueva Union Exitosamente.');
 		}, function(tx) {
 			console.log("Error no es posbile traer Uniones", tx);
+
+        
+
+
+
 		});
+
 		
-	}
+	 }
+
+
+
+
+	$scope.CancelarCrearUnion = function(){
+      $scope.verCreandoUniones = false;
+	};
 
 
 	$scope.verCrearUnion = function(){
       $scope.verCreandoUniones = true;
 	};
+
+
+	 $scope.ActualizarUniones = function(actuali_union){
+	  
+	 consulta ="UPDATE  uniones SET nombre=?, alias=?, codigo=?  WHERE rowid=? "
+	   ConexionServ.query(consulta,[actuali_union.nombre, actuali_union.alias, actuali_union.codigo,  actuali_union.rowid ]).then(function(result){
+
+           console.log('Union Actualizada', result)
+
+           toastr.success('Union Actualizada Exitosamente.')
+
+         		   
+   
+	   } , function(tx){
+	 
+	   	 toastr.info('La Union que intenta actualizar no se pudo actualizar.')
+
+	   });
+
+	 } 
+
+
+	 $scope.VerActualizarUniones = function(union){
+        $scope.VeractualizandoUniones = true;
+
+        $scope.union_creatar_new 	= union;
+
+
+
+
+	 };
+
+
+	 $scope.CancelarActualizarUniones = function(){
+        $scope.VeractualizandoUniones = false;
+	 };
   
+
+
+   $scope.EliminarUnion = function(union){
+	  	
+	  	var res = confirm("¿Seguro que desea eliminar ? ");
+
+		if (res == true) {
+
+		 	consulta ="DELETE FROM uniones WHERE rowid=? ";
+
+			ConexionServ.query(consulta,[union.rowid]).then(function(result){
+
+				console.log('union  eliminida', result);
+				$scope.uniones = $filter('filter') ($scope.uniones, {rowid: '!' + union.rowid})
+                toastr.success('Union eliminada.');
+                $scope.focusOnValorNew  = true;
+            
+                
+			} , function(tx){
+				console.log('No se pudo Eliminar La union que quiere eliminar ' , tx)
+			});
+		}
+
+     }
 
 
 
