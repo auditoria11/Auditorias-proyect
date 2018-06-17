@@ -36,6 +36,7 @@ angular.module('auditoriaApp')
                 "alias varchar(100)  DEFAULT NULL collate nocase," +
                 "codigo varchar(100)  DEFAULT NULL collate nocase," +
                 "distrito_id integer DEFAULT NULL," +
+                "zona varchar(100)  DEFAULT NULL collate nocase," +
                 "tesorero_id integer DEFAULT NULL," + // Tesorero de la iglesia
                 "secretario_id integer DEFAULT NULL)";
 

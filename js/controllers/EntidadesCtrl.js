@@ -24,8 +24,13 @@ angular.module("auditoriaApp")
 			{ name: 'edicion', displayName:'Edición', width: 60, enableSorting: false, enableFiltering: false, cellTemplate: bt2, enableCellEdit: false, enableColumnMenu: true},
 			{ field: 'nombre' },
 			{ field: 'alias' },
+			{ field: 'codigo' },
+			{ field: 'Distrito' },
+			{ field: 'zona' },
 			{ field: 'celular' },
 			{ field: 'tesorero_nombres' }
+
+
 		],
 		onRegisterApi: function( gridApi ) {
 			$scope.grid1Api = gridApi;
@@ -43,7 +48,18 @@ angular.module("auditoriaApp")
 		
 	
 	$scope.crear_distrito = function() {
-		$scope.verCrearDistrito = !$scope.verCrearDistrito;
+
+
+		$scope.verCrearDistrito = true;
+
+		$timeout(function(){ 
+		     $location.hash('nueva_new_new_distrito');
+     		$anchorScroll()
+		}, 100)
+
+
+
+
 	};
     $scope.cancelar_crear_distrito = function() {
 		$scope.distrito_new 	= {};
@@ -67,9 +83,9 @@ angular.module("auditoriaApp")
 			}
 		}
 		
-		consulta = 'INSERT INTO distritos(nombre, alias, zona, pastor_id, tesorero_id) VALUES(?,?,?,?,?)';
+		consulta = 'INSERT INTO distritos(nombre, alias, codigo, zona, pastor_id, tesorero_id) VALUES(?,?,?,?,?,?)';
 		
-		ConexionServ.query(consulta, [distrito.nombre, distrito.alias, distrito.zona, $scope.pastor_new_id, $scope.tesorero_new_id]).then(function(result) {
+		ConexionServ.query(consulta, [distrito.nombre, distrito.alias, distrito.codigo, distrito.zona, $scope.pastor_new_id, $scope.tesorero_new_id]).then(function(result) {
 			$scope.traerDatos();
 			  toastr.success('Se ha creado un nuevo Distrito Exitosamente.');
 		}, function(tx) {
@@ -107,7 +123,7 @@ angular.module("auditoriaApp")
 		});
 		
 		// Traemos IGLESIAS
-		$scope.consulta_igle = "SELECT i.rowid, i.nombre, i.alias, i.distrito_id, i.tesorero_id, i.secretario_id, "+
+		$scope.consulta_igle = "SELECT i.rowid, i.nombre, i.alias, i.distrito_id, i.zona,  i.tesorero_id, i.secretario_id, "+
 					"t.nombres as tesorero_nombres, t.apellidos as tesorero_apellidos " +
 				"from iglesias i "+
 				"LEFT JOIN usuarios t ON t.tipo='Tesorero' and t.rowid=i.tesorero_id "+
@@ -144,7 +160,7 @@ angular.module("auditoriaApp")
         });
 
          // Traemos Asociaciones
-		consulta = "SELECT rowid, nombre, alias, codigo from asociaciones";
+		consulta = "SELECT aso.rowid, aso.* , un.nombre as nombre_union  from asociaciones aso INNER JOIN uniones un ON aso.union_id = un.rowid ";
 
     	ConexionServ.query(consulta, []).then(function(result) {
           $scope.asociaciones = result;
@@ -250,9 +266,14 @@ angular.module("auditoriaApp")
      		}
      	}
 
+ 
+		
 
+
+		$timeout(function(){ 
      	$location.hash('editar-distrito');
      	$anchorScroll()
+     	}, 100)
 
      };
 
@@ -262,8 +283,8 @@ angular.module("auditoriaApp")
 	 $scope.ActualizarDistrito = function(actuali_distrito){
 	  
 	  console.log(actuali_distrito);
-	 consulta ="UPDATE  distritos SET nombre=?, alias=?, zona=? , pastor_id=?, tesorero_id=? WHERE rowid=? "
-	   ConexionServ.query(consulta,[actuali_distrito.nombre, actuali_distrito.alias, actuali_distrito.zona, actuali_distrito.pastor_id, actuali_distrito.tesorero_id, actuali_distrito.rowid ]).then(function(result){
+	 consulta ="UPDATE  distritos SET nombre=?, alias=?, codigo=?, zona=? , pastor_id=?, tesorero_id=? WHERE rowid=? "
+	   ConexionServ.query(consulta,[actuali_distrito.nombre, actuali_distrito.alias, actuali_distrito.codigo, actuali_distrito.zona, actuali_distrito.pastor_id, actuali_distrito.tesorero_id, actuali_distrito.rowid ]).then(function(result){
 
            console.log('Distrito Actualizado', result)
 
@@ -295,8 +316,8 @@ angular.module("auditoriaApp")
 			iglesia_actua_new.secretario = {rowid: null};
 		}
 
-	 consulta ="UPDATE  iglesias SET nombre=?, alias=?,  distrito_id=?, tesorero_id=?, secretario_id=? WHERE rowid=? "
-	   ConexionServ.query(consulta,[iglesia_actua_new.nombre, iglesia_actua_new.alias,  iglesia_actua_new.distrito.rowid, iglesia_actua_new.tesorero.rowid, iglesia_actua_new.secretario.rowid, iglesia_actua_new.rowid ]).then(function(result){
+	 consulta ="UPDATE  iglesias SET nombre=?, alias=?,  distrito_id=?, zona=?, tesorero_id=?, secretario_id=? WHERE rowid=? "
+	   ConexionServ.query(consulta,[iglesia_actua_new.nombre, iglesia_actua_new.alias,  iglesia_actua_new.distrito.rowid,  iglesia_actua_new.zona,  iglesia_actua_new.tesorero.rowid, iglesia_actua_new.secretario.rowid, iglesia_actua_new.rowid ]).then(function(result){
 
            console.log('Iglesia Actualizado', result)
            toastr.success('Iglesia Actualizado Exitosamente.')
@@ -343,10 +364,13 @@ angular.module("auditoriaApp")
      	}
 
 
+   	
 
-
+      
+	$timeout(function(){ 
      	$location.hash('editar-iglesia');
      	$anchorScroll()
+     }, 100)
 
 	};
 
@@ -381,9 +405,11 @@ angular.module("auditoriaApp")
 
 
       $scope.CrearIglesia_insertar = function(iglesia) {
-		consulta = 'INSERT INTO iglesias(nombre, alias, distrito_id, tesorero_id, secretario_id) VALUES(?,?,?,?,?)';
+
+      	console.log(iglesia);
+		consulta = 'INSERT INTO iglesias(nombre, alias, distrito_id, zona,  tesorero_id, secretario_id) VALUES(?,?,?,?,?,?)';
 		
-		ConexionServ.query(consulta, [iglesia.nombre, iglesia.alias,  iglesia.distrito_id, iglesia.tesorero_id, iglesia.secretario_id ]).then(function(result) {
+		ConexionServ.query(consulta, [iglesia.nombre, iglesia.alias,  iglesia.distrito.rowid, iglesia.zona,  iglesia.tesorero_id, iglesia.secretario.rowid ]).then(function(result) {
 			$scope.traerDatos();
 			  toastr.success('Se ha creado un nuevo Distrito Exitosamente.');
 		}, function(tx) {
@@ -396,7 +422,12 @@ angular.module("auditoriaApp")
 
   $scope.VerCreandoIglesia = function() {
 
-  	$scope.Vercreando_iglesia = !$scope.Vercreando_iglesia;
+  	$scope.Vercreando_iglesia = true;
+
+  	$timeout(function(){ 
+     	$location.hash('nueva_new_new_iglesia');
+     	$anchorScroll()
+     	}, 100)
 
 
   };
@@ -441,6 +472,12 @@ angular.module("auditoriaApp")
 
 	$scope.verCrearUnion = function(){
       $scope.verCreandoUniones = true;
+
+
+	 	$timeout(function(){ 
+		     $location.hash('nueva_new_new_union');
+     		$anchorScroll()
+		}, 100)
 	};
 
 
@@ -468,6 +505,15 @@ angular.module("auditoriaApp")
         $scope.VeractualizandoUniones = true;
 
         $scope.union_creatar_new 	= union;
+
+
+
+
+       $timeout(function(){ 
+     	$location.hash('editar-uniones');
+     	$anchorScroll()
+       }, 100)
+
 
 
 
@@ -503,6 +549,135 @@ angular.module("auditoriaApp")
 		}
 
      }
+
+    
+
+      $scope.Insertar_asociaciones = function(creater_asociaciones) {
+      	console.log(creater_asociaciones);
+		consulta = 'INSERT INTO asociaciones(nombre, alias, codigo, union_id) VALUES(?,?,?,?)';
+		
+		ConexionServ.query(consulta, [creater_asociaciones.nombre, creater_asociaciones.alias, creater_asociaciones.codigo, creater_asociaciones.union.rowid]).then(function(result) {
+			$scope.traerDatos();
+			  toastr.success('Se ha creado una Nueva asocación  Exitosamente.');
+		}, function(tx) {
+			console.log("Error no es posbile traer asocaciones", tx);
+
+        
+
+
+
+		});
+
+		
+	 }
+
+
+
+	 $scope.VerCrearAsociaciones = function(){
+
+	 	$scope.MostrandoAsociaciones = true;
+
+	 	$timeout(function(){ 
+		     $location.hash('nueva_asociacion');
+     		$anchorScroll()
+		}, 100)
+
+
+	 };
+
+
+	 $scope.CancelarVerCreandoAsoaciones = function(){
+
+	 	$scope.MostrandoAsociaciones = false;
+
+	 };
+
+
+	  $scope.EliminarAsociacion = function(asociation){
+	  	
+	  	var res = confirm("¿Seguro que desea eliminar ? ");
+
+		if (res == true) {
+
+		 	consulta ="DELETE FROM asociaciones WHERE rowid=? ";
+
+			ConexionServ.query(consulta,[asociation.rowid]).then(function(result){
+
+				console.log('union  eliminida', result);
+				$scope.asociaciones = $filter('filter') ($scope.asociaciones, {rowid: '!' + asociation.rowid})
+                toastr.success('Asociación eliminada.');
+                $scope.focusOnValorNew  = true;
+            
+                
+			} , function(tx){
+				console.log('No se pudo Eliminar La Asociación que quiere eliminar ' , tx)
+			});
+		}
+
+     }
+
+
+     $scope.VerActualizarAsociaciones = function(asociation){
+
+	 	$scope.VerActualizandoAsociaciones = true;
+	 	$scope.actuali_new_asociation = asociation;
+
+
+
+	 	for (var i = 0; i < $scope.uniones.length; i++) {
+     		if (asociation.union_id == $scope.uniones[i].rowid){
+     			$scope.actuali_new_asociation.union = $scope.uniones[i];
+     		}
+     	}
+
+
+     	$timeout(function(){ 
+		     $location.hash('editar_new_new_asociation');
+     		$anchorScroll()
+		}, 100)
+
+
+
+
+
+
+	 };
+
+	  
+
+
+	  $scope.ActualizarAsociaciones = function(actuali_asociation){
+	  
+	 consulta ="UPDATE  uniones SET nombre=?, alias=?, codigo=?, union_id=?  WHERE rowid=? "
+	   ConexionServ.query(consulta,[actuali_asociation.nombre, actuali_asociation.alias, actuali_asociation.codigo, actuali_asociation.union.rowid,  actuali_asociation.rowid ]).then(function(result){
+
+           console.log('Asocacion Actualizada', result)
+
+           toastr.success('Asociación Actualizada Exitosamente.')
+
+         		   
+   
+	   } , function(tx){
+	 
+	   	 toastr.info('La Asociación que intenta actualizar no se pudo actualizar.')
+
+	   });
+
+	 } 
+
+
+
+
+
+	  $scope.CancelarVerActualizarAsociaciones = function(){
+
+	 	$scope.VerActualizandoAsociaciones = false;
+
+	 };
+
+
+
+
 
 
 
