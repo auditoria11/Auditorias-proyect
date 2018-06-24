@@ -3,21 +3,347 @@
 		<div class="box-inner">
 			<div class="box-header well">
 				<h2>
-					<i class="glyphicon glyphicon-info-sign"></i> Distritos
+					<i class="glyphicon glyphicon-info-sign"></i> Informes
 				</h2>
 			
 				<div class="box-icon"></div>
 			</div>
 
-			<div>
-				<h3>Informe Distriro</h3>
+			<dir></dir>
+			<dir></dir>
+			<dir></dir>
+			<dir></dir>
+
+
+
+			<button class="btn btn-primary" ng-click="VerUniones()">Uniones</button>
+
+			  <button class="btn btn-primary" ng-click="VerAsociaciones()" >Asociones</button>
+
+
+
+			  <button ng-click="VerDistritos()" class="btn btn-primary">Distritos</button>
+
+		    <button ng-click="VerIglesias()" class="btn btn-primary">Iglesias</button>
+		
+			
+
+
+       <div class="row"  ng-show="MostrandoUniones">
+		<div class="box col-md-12">
+			<div class="box-inner">
+				<div class="box-header well">
+					<h2>
+						<i class="glyphicon glyphicon-info-sign"></i> Uniones
+					</h2>
+				
+					<div class="box-icon"></div>
+				</div>
+				
+				
+				<div class="box-content row">
+					
+					<div class="col-sm-12"> 
+
+
+				
+				<table class="table table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th scope="col">ID </th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Alias</th>
+								<th scope="col">Código</th>
+						
+								
+								
+							</tr>
+						</thead>
+						<tbody>  
+
+
+
+							<tr ng-repeat="union in uniones">
+ 
+								<td>{{$index + 1}}</td>
+								<td>{{union.nombre}}</td>
+								<td>{{union.alias}}</td>
+								<td>{{union.codigo}}</td>
+								
+								
+							</tr>
+
+
+
+
+							</tbody>
+						</table>
+			
+
+          
+
+					</div>
+
+	            </div>
 			</div>
+	    </div>
+  </div>
 
-			<div><button>Entidades</button></div>
-			<div><button>Auditoria</button></div>
-			<div><button>Iglesias</button></div>
-			<div><button>Libro Mes</button></div>
 
+
+
+
+
+
+      <div class="row" ng-show="MostrandoAsociaciones">
+		<div class="box col-md-12">
+
+			<div class="box-inner">
+
+				<div class="box-header well">
+					<h2>
+						<i class="glyphicon glyphicon-info-sign"></i> Asociaciones
+					</h2>
+				
+					<div class="box-icon"></div>
+				</div>
+
+				<div class="box-content row">
+                   <div class="col-sm-12">
+
+                   	<table class="table table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th scope="col">ID </th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Alias</th>
+								<th scope="col">Código</th>
+								<th scope="col">Zona</th>
+								<th scope="col">Union</th>
+								<th scope="col">Tesorero</th>
+							
+							
+								
+								
+							</tr>
+						</thead>
+						<tbody>  
+
+
+
+							<tr ng-repeat="asociation in asociaciones">
+ 
+								<td>{{$index + 1}}</td>
+								<td>{{asociation.nombre}}</td>
+								<td>{{asociation.alias}}</td>
+								<td>{{asociation.codigo}}</td>
+								<td>{{asociation.zona}}</td>
+								<td>{{asociation.nombre_union}}</td>
+								<td>{{asociation.tesorero_nombres + ' ' +  tesorero_apellidos }}</td>
+
+
+								
+								
+							
+							</tr>
+
+
+
+
+							</tbody>
+						</table>
+
+
+
+
+
+                   </div>
+                    
+
+				</div>
+					
+					
+				
+
+
+				
+			</div> 
+
+
+		</div>
+	</div>  
+
+
+
+	
+
+
+	   <div class="row" ng-show="MostrandoDistritos">
+	<div class="box col-md-12">
+		<div class="box-inner">
+			<div class="box-header well">
+				<h2>
+					<i class="glyphicon glyphicon-info-sign"></i> Distritos
+				</h2>
+			
+				<div class="box-icon"></div>
+			</div>
+			
+			
+			<div class="box-content row">
+				
+				<div class="col-sm-12">
+
+
+			<div >
+						<table class="table table-bordered table-condensed table-striped table-hover">
+							<thead>
+								<tr>
+									<th scope="col">ID </th>
+									<th scope="col">Nombre</th>
+									<th scope="col">Alias</th>
+									<th scope="col">Código</th>
+									<th scope="col">zona</th>
+									<th scope="col">Pastor</th>
+									<th scope="col">Tesorero</th>
+							
+									
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr ng-repeat="distrito in distritos">
+
+									<td>{{$index + 1}}</td>
+									<td>{{distrito.nombre}}</td>
+									<td>{{distrito.alias}}</td>
+									<td>{{distrito.codigo}}</td>
+									<td>{{distrito.zona}}</td>
+									<td>{{distrito.pastor_nombres + ' ' + distrito.pastor_apellidos}}</td>
+									<td>{{distrito.tesorero_nombres + ' ' + distrito.tesorero_apellidos}}</td>
+
+									
+									
+									
+								</tr>
+
+
+
+
+							</tbody>
+						</table>
+
+
+                   </div>
+                    
+
+				</div>
+					
+					
+								
+			</div> 
+
+
+		</div>
+	</div>
+
+</div>
+
+
+   
+
+
+       <div class="row" ng-show="MostrandoIglesias">
+		<div class="box col-md-12">
+
+			<div class="box-inner">
+
+				<div class="box-header well">
+					<h2>
+						<i class="glyphicon glyphicon-info-sign"></i> Iglesias
+					</h2>
+				
+					<div class="box-icon"></div>
+				</div>
+
+				<div class="box-content row">
+                   <div class="col-sm-12">
+
+
+				<table class="table table-bordered table-condensed table-striped table-hover">
+							<thead>
+								<tr>
+									<th scope="col">ID </th>
+									<th scope="col">Nombre</th>
+									<th scope="col">Alias</th>
+									<th scope="col">Código</th>
+								    <th scope="col">distrito</th>
+									<th scope="col">zona</th>
+									<th scope="col">Tesorero</th>
+									<th scope="col">Secreetario</th>
+
+							
+									
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr ng-repeat="iglesia in iglesias">
+
+									<td>{{$index + 1}}</td>
+									<td>{{iglesia.nombre}}</td>
+									<td>{{iglesia.alias}}</td>
+									<td>{{iglesia.codigo}}</td>
+									<td>{{iglesia.nombre_distrito}}</td>
+									<td>{{iglesia.zona}}</td>
+									<td>{{iglesia.tesorero_nombres + ' ' + tesorero_apellidos}}</td>
+									<td>{{iglesia.secretario_nombres + ' ' + secretario_apellidos}}</td>
+
+									
+									
+									
+									</tr>
+
+
+
+
+								</tbody>
+					  </table>
+
+
+
+         
+
+
+                   </div>
+                    
+
+				</div>
+					
+					
+			
+
+
+				
+			</div> 
+
+
+		</div>
+	</div>  
+
+	  
+
+
+		
+
+
+
+
+
+
+
+
+			
 
 		</div>
 	</div>
