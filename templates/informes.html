@@ -1,5 +1,5 @@
-<div class="row">
-	<div class="box col-md-12">
+<div class="row" class="hidden-print">
+	<div class="box col-md-12 hidden-print">
 		<div class="box-inner">
 			<div class="box-header well">
 				<h2>
@@ -8,86 +8,51 @@
 			
 				<div class="box-icon"></div>
 			</div>
-
-			<dir></dir>
-			<dir></dir>
-			<dir></dir>
-			<dir></dir>
-
-
-
-			<button class="btn btn-primary" ng-click="VerUniones()">Uniones</button>
-
-			  <button class="btn btn-primary" ng-click="VerAsociaciones()" >Asociones</button>
-
-
-
-			  <button ng-click="VerDistritos()" class="btn btn-primary">Distritos</button>
-
-		    <button ng-click="VerIglesias()" class="btn btn-primary">Iglesias</button>
-		
 			
-
-
-       <div class="row"  ng-show="MostrandoUniones">
-		<div class="box col-md-12">
-			<div class="box-inner">
-				<div class="box-header well">
-					<h2>
-						<i class="glyphicon glyphicon-info-sign"></i> Uniones
-					</h2>
+			<div class="box-content">
 				
-					<div class="box-icon"></div>
-				</div>
-				
-				
-				<div class="box-content row">
-					
-					<div class="col-sm-12"> 
-
-
-				
-				<table class="table table-bordered table-condensed">
-						<thead>
-							<tr>
-								<th scope="col">ID </th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Alias</th>
-								<th scope="col">Código</th>
-						
-								
-								
-							</tr>
-						</thead>
-						<tbody>  
-
-
-
-							<tr ng-repeat="union in uniones">
- 
-								<td>{{$index + 1}}</td>
-								<td>{{union.nombre}}</td>
-								<td>{{union.alias}}</td>
-								<td>{{union.codigo}}</td>
-								
-								
-							</tr>
-
-
-
-
-							</tbody>
-						</table>
-			
-
-          
-
+				<button class="btn btn-primary" ng-click="VerUniones()">Uniones</button>
+				<button class="btn btn-primary" ng-click="VerAsociaciones()" >Asociones</button>
+	  			<button ng-click="VerDistritos()" class="btn btn-primary">Distritos</button>
+	  			<button ng-click="VerIglesias()" class="btn btn-primary">Iglesias</button>
+			  
+				<hr class="wide">
+				<h5>Orientación de la página:</h5>
+				<div class="control-group">
+					<div class="radio">
+						<label>
+						<input type="radio" ng-model="config.orientacion" value="oficio_horizontal">
+						<div class="text">Oficio Horizontal</div>
+						</label>
 					</div>
-
-	            </div>
+					<div class="radio">
+						<label>
+						<input type="radio" ng-model="config.orientacion" value="carta_horizontal">
+						<div class="text">Carta horizontal</div>
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+						<input type="radio" ng-model="config.orientacion" value="vertical">
+						<div class="text">Vertical</div>
+						</label>
+					</div>
+				</div>
+				
 			</div>
-	    </div>
-  </div>
+			
+
+
+			
+		</div>	
+	</div>	
+</div>
+
+
+
+<div ui-view class="informes-pages altura-informe row">
+	<h5 style="text-align: center">Aquí saldrán tus reportes</h5>
+</div>
 
 
 
@@ -95,256 +60,24 @@
 
 
 
-      <div class="row" ng-show="MostrandoAsociaciones">
-		<div class="box col-md-12">
-
-			<div class="box-inner">
-
-				<div class="box-header well">
-					<h2>
-						<i class="glyphicon glyphicon-info-sign"></i> Asociaciones
-					</h2>
-				
-					<div class="box-icon"></div>
-				</div>
-
-				<div class="box-content row">
-                   <div class="col-sm-12">
-
-                   	<table class="table table-bordered table-condensed">
-						<thead>
-							<tr>
-								<th scope="col">ID </th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Alias</th>
-								<th scope="col">Código</th>
-								<th scope="col">Zona</th>
-								<th scope="col">Union</th>
-								<th scope="col">Tesorero</th>
-							
-							
-								
-								
-							</tr>
-						</thead>
-						<tbody>  
-
-
-
-							<tr ng-repeat="asociation in asociaciones">
- 
-								<td>{{$index + 1}}</td>
-								<td>{{asociation.nombre}}</td>
-								<td>{{asociation.alias}}</td>
-								<td>{{asociation.codigo}}</td>
-								<td>{{asociation.zona}}</td>
-								<td>{{asociation.nombre_union}}</td>
-								<td>{{asociation.tesorero_nombres + ' ' +  tesorero_apellidos }}</td>
-
-
-								
-								
-							
-							</tr>
-
-
-
-
-							</tbody>
-						</table>
 
 
 
 
 
-                   </div>
-                    
-
-				</div>
-					
-					
-				
 
 
-				
-			</div> 
 
 
-		</div>
-	</div>  
+
+
+
+
+
+
+
+
 
 
 
 	
-
-
-	   <div class="row" ng-show="MostrandoDistritos">
-	<div class="box col-md-12">
-		<div class="box-inner">
-			<div class="box-header well">
-				<h2>
-					<i class="glyphicon glyphicon-info-sign"></i> Distritos
-				</h2>
-			
-				<div class="box-icon"></div>
-			</div>
-			
-			
-			<div class="box-content row">
-				
-				<div class="col-sm-12">
-
-
-			<div >
-						<table class="table table-bordered table-condensed table-striped table-hover">
-							<thead>
-								<tr>
-									<th scope="col">ID </th>
-									<th scope="col">Nombre</th>
-									<th scope="col">Alias</th>
-									<th scope="col">Código</th>
-									<th scope="col">zona</th>
-									<th scope="col">Pastor</th>
-									<th scope="col">Tesorero</th>
-							
-									
-								</tr>
-							</thead>
-							<tbody>
-
-								<tr ng-repeat="distrito in distritos">
-
-									<td>{{$index + 1}}</td>
-									<td>{{distrito.nombre}}</td>
-									<td>{{distrito.alias}}</td>
-									<td>{{distrito.codigo}}</td>
-									<td>{{distrito.zona}}</td>
-									<td>{{distrito.pastor_nombres + ' ' + distrito.pastor_apellidos}}</td>
-									<td>{{distrito.tesorero_nombres + ' ' + distrito.tesorero_apellidos}}</td>
-
-									
-									
-									
-								</tr>
-
-
-
-
-							</tbody>
-						</table>
-
-
-                   </div>
-                    
-
-				</div>
-					
-					
-								
-			</div> 
-
-
-		</div>
-	</div>
-
-</div>
-
-
-   
-
-
-       <div class="row" ng-show="MostrandoIglesias">
-		<div class="box col-md-12">
-
-			<div class="box-inner">
-
-				<div class="box-header well">
-					<h2>
-						<i class="glyphicon glyphicon-info-sign"></i> Iglesias
-					</h2>
-				
-					<div class="box-icon"></div>
-				</div>
-
-				<div class="box-content row">
-                   <div class="col-sm-12">
-
-
-				<table class="table table-bordered table-condensed table-striped table-hover">
-							<thead>
-								<tr>
-									<th scope="col">ID </th>
-									<th scope="col">Nombre</th>
-									<th scope="col">Alias</th>
-									<th scope="col">Código</th>
-								    <th scope="col">distrito</th>
-									<th scope="col">zona</th>
-									<th scope="col">Tesorero</th>
-									<th scope="col">Secreetario</th>
-
-							
-									
-								</tr>
-							</thead>
-							<tbody>
-
-								<tr ng-repeat="iglesia in iglesias">
-
-									<td>{{$index + 1}}</td>
-									<td>{{iglesia.nombre}}</td>
-									<td>{{iglesia.alias}}</td>
-									<td>{{iglesia.codigo}}</td>
-									<td>{{iglesia.nombre_distrito}}</td>
-									<td>{{iglesia.zona}}</td>
-									<td>{{iglesia.tesorero_nombres + ' ' + tesorero_apellidos}}</td>
-									<td>{{iglesia.secretario_nombres + ' ' + secretario_apellidos}}</td>
-
-									
-									
-									
-									</tr>
-
-
-
-
-								</tbody>
-					  </table>
-
-
-
-         
-
-
-                   </div>
-                    
-
-				</div>
-					
-					
-			
-
-
-				
-			</div> 
-
-
-		</div>
-	</div>  
-
-	  
-
-
-		
-
-
-
-
-
-
-
-
-			
-
-		</div>
-	</div>
-</div>

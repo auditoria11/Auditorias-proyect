@@ -2,7 +2,7 @@
 <!-- topbar starts -->
 
 
-   <div class="navbar navbar-default" role="navigation">
+   <div class="navbar navbar-default hidden-print" role="navigation">
 
         <div class="navbar-inner">
             <button type="button" ng-click="sidebar_activar()" class="navbar-toggle pull-left animated flip">
@@ -99,7 +99,7 @@
     <div class="row">
         
         <!-- MENU IZQUIERDO starts -->
-        <div class="col-sm-2 col-lg-2">
+        <div class="col-sm-2 col-lg-2 hidden-print">
             <div class="sidebar-nav" ng-class="{'active': sidebar_active}">
                 <div class="nav-canvas">
                     <div class="nav-sm nav nav-stacked">
@@ -206,10 +206,10 @@
     </div><!--/fluid-row-->
 
 
-    <hr>
+    <hr class="hidden-print">
 
 
-    <footer class="row">
+    <footer class="row hidden-print">
         <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 
             <a href=# target="_blank">Auditoría de iglesias</a> 2018</p>
 
